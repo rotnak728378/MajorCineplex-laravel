@@ -1,0 +1,108 @@
+.cinema {
+    overflow-x: hidden;
+    .slider-cinema{
+        margin-bottom: 30px;
+      
+    }
+    .btn-slider{
+        width: fit-content;
+        height: 40px;
+        padding: 10px;
+        border-radius:5px;
+        border: none;
+        color: black;
+    
+        &:nth-child(2) {
+            background-color: #FF3D00;
+            color: white;
+        }
+    
+    }
+    
+    .image-slider{
+        position: relative;
+        background: url(../../images/seats.png);
+        background-size: cover;
+        height: 450px;
+        overflow: hidden;
+
+        .container {
+            margin-top: 200px;
+
+            h1 {
+                color: white;
+            }
+            p {
+                color: white;
+            }
+        }
+    }
+    .search {
+        .search-input {
+            margin-top: 20px;
+            margin-left: 150px;
+            width: 400px;
+            border: none;
+            padding: 5px 15px;
+            outline: none;
+            border-radius: 5px;
+        }
+        .btn-search {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: $orange;
+            color: white;
+        }
+    }
+    .container-cinema {
+        margin-top: 40px;
+        margin-left: 150px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .cinema-card {
+            color: white;
+            width: 1100px;
+            background-color: black;
+            padding: 10px;
+            display: flex;
+            gap: 20px;
+            .cinema-img {
+                img {
+                    width: 100px;
+                }
+            }
+        }
+    }
+    @extend %footer;
+  
+}
+
+@media only screen and (max-width: 840px) {
+    .container1 {
+        margin: 50px 20px;
+        .row{
+           font-size: 14px;
+           h3{
+               font-size: 16px;
+           }
+           .img{
+               img {
+                   width: 10px;
+               }
+            
+           }
+        }
+    }
+     
+}
+@media only screen and (max-width:536px){
+    .input{
+        margin: 50px 20px;
+    }
+
+}
+    

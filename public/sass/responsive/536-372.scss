@@ -1,0 +1,25 @@
+@media only screen and (max-width: 536px) {
+    .homepage {
+        .main-contents {
+            padding: 10px 3px;
+            .movie-contents {
+                .row-movie {
+                    grid-template-columns: auto auto;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 372px) {
+    .homepage {
+        .main-contents {
+            padding: 10px 5px;
+            .movie-contents {
+                .row-movie {
+                    grid-template-columns: auto;
+                }
+            }
+        }
+    }
+}

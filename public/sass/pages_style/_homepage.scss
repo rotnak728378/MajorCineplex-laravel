@@ -1,0 +1,292 @@
+
+* {
+    scroll-behavior: smooth;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border: 3px solid transparent;
+        background-clip: padding-box;
+        border-radius: 5px;
+        background-color: $orange;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+}
+body {
+    background-color: $background;
+}
+.homepage {
+    .navbar {
+        height: fit-content;
+        padding: 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 99;
+
+        .menu-bar {
+            padding: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            background-color: black;
+
+            .logo-link {
+                margin-right: 30px;
+                img {
+                    height: 50px;
+                }
+            }
+
+            .menu-contents {
+                font-family: 'Poppins', sans-serif;
+
+                .navbar-nav {
+                    .nav-item {
+                        .nav-link {
+                            color: white;
+                            @extend %flex-box;
+                            gap: 5px;
+
+                            &.active {
+                                background-color: white;
+                                color: $orange;
+                                font-weight: 600;
+                            }
+
+                            .iconify {
+                                font-size: 20px;
+
+                                &:nth-child(1) {
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                .search-bar {
+                    .search-input {
+                        font-family: 'PT Sans', sans-serif;
+                        box-shadow: none;
+                        border: none;
+                        width: 150px;
+                        transition: all 0.4s ease;
+
+                        &:focus {
+                            width: 230px;
+                        }
+                    }
+                    .search-btn {
+                        @extend %flex-box;
+                        justify-content: center;
+                        background-color: $orange;
+                        color: white;
+                        border: none;
+                        box-shadow: none;
+                        font-size: 20px;
+                        margin-right: 10px;
+
+                        &:active {
+                            transform: scale(0.98)
+                        }
+                    }
+                }
+                .lang {
+                    font-family: 'ubuntu'; 
+
+                    .btn-group {
+                        .btn {
+                            background-color: none;
+                            box-shadow: none;
+                            color: white;
+                            font-size: 14px;
+
+                            .iconify {
+                                font-size: 22px;
+                            }
+                        }  
+                        .dropdown-menu {
+                            padding: 2px;
+                            font-size: 14px;
+                            min-width: fit-content;
+                            
+                            li {
+                                a{
+                                    border-radius: 3px;
+                                    transition: all 0.5s ease;
+    
+                                    &.active {
+                                        background-color: $orange;
+                                    }
+                                    &:active {
+                                        background-color: $orange;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .slider-page {
+        margin-top: 60px;
+    }
+
+    .main-contents {
+        color: white;
+        padding: 30px 80px;
+
+        .filter-bar {
+            @extend %flex-box;
+            background-color: black;
+            padding: 0px 10px;
+            border-bottom: 1px solid white;
+            font-family: 'Ubuntu', sans-serif;
+
+            .dropdown {
+                .btn {
+                    box-shadow: none;
+                    .iconify {
+                        font-size: 22px;
+                    }
+                }
+
+                .dropdown-menu {
+                    padding: 3px;
+                    li a{
+                        border-radius: 3px;
+                        transition: all 0.5s ease;
+
+                        &.active {
+                            background-color: $orange;
+                        }
+                        &:active {
+                            background-color: $orange;
+                        }
+                    }
+                }
+            }
+        }
+
+        .movie-contents {
+            margin-top: 30px;
+            width: 100%;
+
+            .row-movie {
+                display: grid;
+                width: fit-content;
+                gap: 25px;
+                margin-left: auto;
+                margin-right: auto;
+                grid-template-columns: auto auto auto auto auto auto;
+                .col {
+                    cursor: pointer;
+
+                    .movie-item {                     
+                        .thumbnail {
+                            // position: absolute;
+                            img {
+                                width: 172.9px;
+                                border-radius: 5px;
+                            }
+                        }
+                        .thumb-info {
+                            background-color: rgba(0, 0, 0, 0.7);
+                            width: 172.9px;
+                            height: 0px;
+                            padding: 20px 20px;
+                            border-radius: 5px;
+                            color: white;
+                            line-height: 12px;
+                            @extend %flex-box;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            position: absolute;
+                            margin-top: -247px;
+                            opacity: 0;
+                            transition: all 0.2s ease;
+                            
+                            h6 {
+                                margin-bottom: 20px;
+                                opacity: 0;
+                                transition: all 0.5s ease;
+                            }
+                            p {
+                                font-size: 12px;
+                                display: flex;
+                                gap: 5px;
+                                opacity: 0;
+                                transition: all 0.5s ease;
+                            }
+                            article {
+                                p {
+                                    .booking-btn {
+                                        text-align: center;
+                                        width: 100%;
+                                        padding: 7px 15px;
+                                        border: 2px solid white;
+                                        background-color: transparent;
+                                        border-radius: 5px;
+                                        color: white;
+                                        text-decoration: none;
+                                        text-transform: uppercase;
+                                        font-size: 13px;
+                                        font-family: 'Merienda', cursive;
+                                        opacity: 0;
+                                        transition: all 0.5s ease;
+
+                                        &:hover{
+                                            background-color: rgb(250, 18, 57);
+                                        }
+    
+                                    }
+                                    &:nth-child(2) {
+                                        .booking-btn {
+                                            background-color: $orange;
+                                            border: 2px solid $orange;
+                                            margin-top: -10px;
+                                        }
+                                    }
+                                }
+                            }
+    
+                        }
+                    }
+                   
+
+                    &:hover {
+                        .movie-item {
+                            .thumb-info {
+                                opacity: 1;
+                                height: 247px;
+
+                                h6 {
+                                    opacity: 1;
+                                }
+                                p {
+                                    opacity: 1;
+                                }
+                                article {
+                                    p {
+                                        .booking-btn {
+                                            opacity: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @extend %footer;
+}

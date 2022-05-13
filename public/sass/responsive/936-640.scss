@@ -1,0 +1,113 @@
+@media only screen and (max-width: 936px) {
+    .homepage {
+        
+        .main-contents {
+            padding: 25px 30px;
+            .movie-contents {
+                .row-movie {
+                    grid-template-columns: auto auto auto auto;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 830px) {
+    .homepage {
+        
+        .main-contents {
+            .movie-contents {
+                .row-movie {
+                    grid-template-columns: auto auto auto;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 640px) {
+    .homepage {
+        .main-contents {
+            padding: 15px 15px;
+
+            .filter-bar {
+                .dropdown {
+                    .btn {
+                        font-size: 12px;
+
+                        .iconify {
+                            font-size: 16px;
+                        }
+                    }
+                    .dropdown-menu {
+                        .dropdown-item {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            .movie-contents {
+
+                .row-movie {
+                    grid-template-columns: auto auto auto;
+                    gap: 10px;
+
+                    .col {
+                        .movie-item {
+                            .thumbnail {
+                                img {
+                                    width: 170px;
+                                }
+                            }
+                            .thumb-info {
+                                width: 170px;
+
+                                h6 {
+                                    font-size: 14px;
+                                }
+                                p {
+                                    font-size: 12px;
+                                }
+
+                                article {
+                                    p {
+                                        a.booking-btn {
+                                            font-size: 12px;
+                                            padding: 5px 8px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .footer {
+            .footer-contents {
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                
+                .contact {
+                    h5 {
+                        text-align: center;
+                    }
+                    p {
+                        text-align: center
+                    }
+                    .social-media {
+                        @extend %flex-box;
+                        gap: 10px;
+                        justify-content: center;
+        
+                        a {
+                            img {
+                                width: 20px;
+                            }
+                           
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

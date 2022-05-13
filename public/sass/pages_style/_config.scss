@@ -1,0 +1,98 @@
+$orange: #FF3D00;
+$background: rgba(0, 0, 0, 0.836);
+
+%flex-box {
+    display: flex;
+    align-items: center;
+}
+
+%footer {
+    .footer {
+        background-color: black;
+        padding: 40px 80px;
+        color: white;
+
+
+        .footer-contents {
+            display: flex;
+            justify-content: space-around;
+
+            .menu-footer {
+                display: flex;
+                gap: 40px;
+
+                .menu-col {
+                    p {
+                        font-weight: 600;
+                        border-bottom: 2px solid $orange;
+                    }
+
+                    ul {
+                        position: relative;
+                        padding-left: 0;
+                        font-family: 'Abel', sans-serif;
+
+                        li {
+                            list-style-type: none;
+
+                            a {
+                                text-decoration: none;
+                                color: white;
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .contact {
+                h5 {
+                    font-weight: 600;
+                }
+                p {
+                    font-family: 'Abel', sans-serif;
+                }
+                .social-media {
+                    @extend %flex-box;
+                    gap: 10px;
+    
+                    a {
+                        text-decoration: none;
+                        img {
+                            width: 30px;
+                        }
+                       
+                    }
+                }
+            }
+        }
+        .bottom-footer {
+            @extend %flex-box;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+
+            .app-download {
+                margin-top: 30px;
+                @extend %flex-box;
+                gap: 10px;
+                
+                .store {
+                    img {
+                        width: 120px;
+                    }
+                }
+            }
+            .copyright {
+
+                p {
+                    text-align: center;
+                    font-family: 'Anek Devanagari', sans-serif;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

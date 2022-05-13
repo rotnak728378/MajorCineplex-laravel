@@ -1,0 +1,27 @@
+@media only screen and (max-width: 1130px) {
+    .homepage {
+        .navbar {
+            .menu-bar {
+                .menu-contents {
+                    .search-bar {
+                        .search-input {
+                            width: 100px;
+
+                            &:focus {
+                                width: 140px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main-contents {
+            // padding: 25px 30px;
+            .movie-contents {
+                .row-movie {
+                    grid-template-columns: auto auto auto auto;
+                }
+            }
+        }
+    }
+}

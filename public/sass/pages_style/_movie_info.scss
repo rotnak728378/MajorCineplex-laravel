@@ -1,0 +1,104 @@
+.movie-info {
+    font-family: Roboto;
+    #trailer {
+        width: 1200px;
+        height: 700px;
+        margin:auto;
+        display:block;
+    }
+    .iframe-container{
+        padding-top: 70px;
+    
+    }
+    
+    .line{
+        border-top: solid 2px white;
+        width:1200px;
+        text-align:center;
+        margin: auto;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    
+    .movieDescription{
+        background-color: black;
+        width: 1200px;
+        height: 400px;
+        margin: auto;
+        display: block;
+        padding: 30px;
+        color: white;
+        height: auto;
+        position: relative;
+
+        .moviePoster{
+            width: 200px;
+            float: left;
+            margin-right: 20px;
+        }
+        .movieTitle{
+            float: left;
+        }
+        .bookNowBtn{
+            float: right;
+            background-color: $orange;
+            border-radius: 5px;
+            border: 0;
+            color: white;
+            padding: 5px;
+            width: 130px;
+        }
+        .categories {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .movieDetails{
+                @extend %flex-box;
+                gap: 10px;
+
+            }
+
+            .more-info{
+                .info-row {
+                    display: flex;
+                    gap: 20px;
+                }
+            }
+        }
+        
+    }
+    
+    .textDecor{
+        font-size: 20px;
+        border-bottom: 1px solid gray;
+        padding: 5px;
+        margin-bottom: 25px;
+    }
+    
+    .mayAlsoLike{
+        background-color: black;
+        width: 1200px;
+        height: 450px;
+        margin: auto;
+        display: block;
+        padding: 30px;
+        color: white;
+        position: relative;
+        margin-bottom: 20px;
+        .recommend-movie{
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            .otherPoster{
+                width: 172.9px;
+                float: left;
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+        }
+       
+    }
+
+    @extend %footer;
+}
