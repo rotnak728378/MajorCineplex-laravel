@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 .movie-info .movieDescription .categories .movieDetails, .homepage .main-contents .movie-contents .row-movie .col .movie-item .thumb-info, .homepage .main-contents .filter-bar, .homepage .navbar .menu-bar .menu-contents .search-bar .search-btn, .homepage .navbar .menu-bar .menu-contents .navbar-nav .nav-item .nav-link, .contact-us .footer .bottom-footer .app-download, .new-activity .footer .bottom-footer .app-download, .promotion .footer .bottom-footer .app-download, .cinema .footer .bottom-footer .app-download, .movie-info .footer .bottom-footer .app-download, .homepage .footer .bottom-footer .app-download, .contact-us .footer .bottom-footer, .new-activity .footer .bottom-footer, .promotion .footer .bottom-footer, .cinema .footer .bottom-footer, .movie-info .footer .bottom-footer, .homepage .footer .bottom-footer, .contact-us .footer .footer-contents .contact .social-media, .new-activity .footer .footer-contents .contact .social-media, .promotion .footer .footer-contents .contact .social-media, .cinema .footer .footer-contents .contact .social-media, .movie-info .footer .footer-contents .contact .social-media, .homepage .footer .footer-contents .contact .social-media {
   display: flex;
   align-items: center;
@@ -91,7 +92,7 @@
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.836);
+  background-color: #242333;
 }
 
 .homepage .navbar {
@@ -344,6 +345,10 @@ body {
   padding: 5px;
   width: 130px;
 }
+.movie-info .movieDescription .bookNowBtn a {
+  text-decoration: none;
+  color: white;
+}
 .movie-info .movieDescription .categories {
   display: flex;
   flex-direction: column;
@@ -382,6 +387,212 @@ body {
   float: left;
   margin-right: 20px;
   margin-left: 20px;
+}
+
+:root {
+  --selected-color: #2ecc71;
+  --occupied-color: #e74c3c;
+  --available-color: #fff;
+}
+
+.book {
+  margin-top: 30px;
+}
+.book .booking-form {
+  margin-top: 60px;
+  margin-left: 3%;
+  position: absolute;
+  width: 32%;
+  padding: 20px;
+  border-right: 2px solid #FF3D00;
+  background-color: black;
+}
+.book .booking-form .card {
+  background: none;
+  color: white;
+}
+.book .booking-form .card .head {
+  display: flex;
+  border-bottom: 1px solid white;
+  gap: 15px;
+  padding-bottom: 10px;
+}
+.book .booking-form .card .head .poster img {
+  width: 120px;
+}
+.book .booking-form .card .body {
+  padding-top: 15px;
+}
+.book .booking-form .card .body input {
+  outline: none;
+}
+.book .booking-form .card .body .fl {
+  float: left;
+  width: 110px;
+  line-height: 35px;
+}
+.book .booking-form .card .body .fontLabel {
+  color: white;
+}
+.book .booking-form .card .body .clr {
+  clear: both;
+}
+.book .booking-form .card .body .box {
+  width: 360px;
+  height: 35px;
+  margin-top: 10px;
+  font-family: verdana;
+  font-size: 12px;
+}
+.book .booking-form .card .body .box button {
+  float: right;
+  border: none;
+  color: white;
+  width: 110px;
+  height: 35px;
+  background: #FF3D00;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.book .booking-form .card .body .box button a {
+  text-decoration: none;
+  color: white;
+}
+.book .booking-form .card .body .box button:nth-child(2) {
+  background-color: white;
+}
+.book .booking-form .card .body .box button:nth-child(2) a {
+  color: #FF3D00;
+}
+.book .booking-form .card .body .textBox {
+  height: 35px;
+  width: 190px;
+  border: none;
+  padding-left: 20px;
+}
+.book .booking-form .card .body .new {
+  float: left;
+}
+.book .booking-form .card .body .iconBox {
+  height: 35px;
+  width: 40px;
+  line-height: 38px;
+  text-align: center;
+  background: #FF3D00;
+}
+.book .booking-form .card .body .iconBox .iconify {
+  font-size: 20px;
+}
+.book .booking-form .card .body .radio {
+  color: white;
+  line-height: 38px;
+}
+.book .booking-form .card .body .terms {
+  line-height: 35px;
+  text-align: center;
+  color: white;
+}
+.book .booking-page {
+  margin-left: 37%;
+  margin-right: 5%;
+  font-family: "Lato", sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  /* Selects the second row f*/
+}
+.book .booking-page .movie-container {
+  margin: 20px 0;
+}
+.book .booking-page .movie-container select {
+  background-color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.book .booking-page .container {
+  perspective: 1000px;
+  margin-bottom: 3px;
+}
+.book .booking-page .seat {
+  background-color: #444451;
+  height: 20px;
+  width: 25px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.book .booking-page .seat.selected {
+  background-color: var(--selected-color);
+}
+.book .booking-page .seat.occupied {
+  background-color: var(--available-color);
+}
+.book .booking-page .seat:nth-of-type(4n) {
+  margin-right: 18px;
+}
+.book .booking-page .seat:not(.occupied) {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.book .booking-page .showcase .seat:not(.occupied) {
+  cursor: default;
+  transform: scale(1);
+}
+.book .booking-page .showcase {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+.book .booking-page .showcase li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+.book .booking-page .showcase li small {
+  margin-left: 2px;
+}
+.book .booking-page .row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.book .booking-page .screen {
+  background-color: #fff;
+  color: black;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 70px;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+.book .booking-page p.text {
+  margin: 5px 0;
+}
+.book .booking-page p.text span {
+  color: #6feaf6;
 }
 
 .cinema {
@@ -480,6 +691,159 @@ body {
   margin-bottom: 40px;
 }
 
+.login-box {
+  width: 400px;
+  padding: 40px;
+  margin: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #FF3D00;
+  font-size: 12px;
+}
+
+.login-box form button {
+  background: none;
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #FF3D00;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+
+.login-box button:hover {
+  background: #FF3D00;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #FF3D00, 0 0 25px #FF3D00, 0 0 50px #FF3D00, 0 0 100px #FF3D00;
+}
+
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF3D00);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+.login-box button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #FF3D00);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%, 100% {
+    top: 100%;
+  }
+}
+.login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #FF3D00);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%, 100% {
+    right: 100%;
+  }
+}
+.login-box button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #FF3D00);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%, 100% {
+    bottom: 100%;
+  }
+}
 @media only screen and (max-width: 1400px) {
   .homepage .main-contents .movie-contents .row-movie {
     grid-template-columns: auto auto auto auto auto auto;

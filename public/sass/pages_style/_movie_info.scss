@@ -48,6 +48,11 @@
             color: white;
             padding: 5px;
             width: 130px;
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
         }
         .categories {
             display: flex;

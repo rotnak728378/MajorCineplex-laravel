@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+:root {
+    --selected-color: #2ecc71;
+    --occupied-color: #e74c3c;
+    --available-color: #fff;
+}
+
+.book {
+    margin-top: 30px;
+    .booking-form {
+        margin-top: 60px;
+        margin-left: 3%;
+        position: absolute;
+        width: 32%;
+        // height: 500px;
+        padding: 20px;
+        border-right: 2px solid $orange;
+        background-color: black;
+        .card {
+            background: none;
+            color: white;
+            
+            .head{
+                display: flex;
+                border-bottom: 1px solid white;
+                gap: 15px;
+                padding-bottom: 10px;
+                .poster{
+                    img {
+                        width: 120px;
+                    }
+                }
+            }
+            .body {
+                padding-top: 15px;
+
+                input {
+                    outline: none;
+                }
+                .fl{
+                    float: left;
+                    width: 110px;
+                    line-height: 35px;
+                }
+                
+                .fontLabel{
+                  color: white;
+                }
+                
+                .clr{
+                    clear: both;
+                }
+                
+                .box{
+                    width: 360px;
+                    height: 35px;
+                    margin-top: 10px;
+                    font-family: verdana;
+                    font-size: 12px;
+
+                    button{
+                        float: right;
+                        border: none;
+                        color: white;
+                        width: 110px;
+                        height: 35px;
+                        background: $orange;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        margin-left: 15px;
+
+                        a {
+                            text-decoration: none;
+                            color: white;
+                        }
+                        &:nth-child(2) {
+                            background-color: white;
+                            
+
+                            a {
+                                color: $orange;
+                            }
+                        }
+                        
+                    }
+                }
+                
+                .textBox{
+                    height: 35px;
+                    width: 190px;
+                    border: none;
+                  padding-left: 20px;
+                }
+                
+                .new{
+                  float: left;
+                }
+                
+                .iconBox{
+                    height: 35px;
+                    width: 40px;
+                    line-height: 38px;
+                    text-align: center;
+                    background: $orange;
+
+                    .iconify {
+                        font-size: 20px;
+                    }
+                }
+                
+                .radio{
+                    color: white;
+                    line-height: 38px;
+                }
+                
+                .terms{
+                    line-height: 35px;
+                    text-align: center;
+                    color: white;
+                }
+                
+                
+             
+            }
+        }
+    }
+    .booking-page {
+        margin-left: 37%;
+        margin-right: 5%;
+        // padding: 120px;
+        font-family: "Lato", sans-serif;
+        // background-color: #242333;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+    
+        .movie-container {
+            margin: 20px 0;
+        }
+        
+        .movie-container select {
+            background-color: #fff;
+            border: 0;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-left: 10px;
+            padding: 5px 15px 5px 15px;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .container {
+            perspective: 1000px;
+            margin-bottom: 3px;
+        }
+        
+        .seat {
+            background-color: #444451;
+            height: 20px;
+            width: 25px;
+            margin: 3px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .seat.selected {
+            background-color: var(--selected-color);
+        }
+        
+        .seat.occupied {
+            background-color: var(--available-color);
+        }
+        
+        /* Selects the second row f*/
+        .seat:nth-of-type(4n) {
+            margin-right: 18px;
+        }
+        
+        // .seat:nth-last-of-type(4) {
+        //     margin-left: 18px;
+        // }
+        
+        .seat:not(.occupied) {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        
+        .showcase .seat:not(.occupied) {
+            cursor: default;
+            transform: scale(1);
+        }
+        
+        .showcase {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #777;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .showcase li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+        }
+        
+        .showcase li small {
+            margin-left: 2px;
+        }
+        
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .screen {
+            background-color: #fff;
+            color: black;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 70px;
+            width: 100%;
+            margin: 15px 0;
+            transform: rotateX(-45deg);
+            box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        p.text {
+            margin: 5px 0;
+        }
+        
+        p.text span {
+            color: #6feaf6;
+        }
+          
+    }
+}

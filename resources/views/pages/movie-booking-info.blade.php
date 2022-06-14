@@ -14,7 +14,9 @@
         <div>
             <img class="moviePoster" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRBkxgl2A2PhE_6tklFLT0bxn5NLhvhsnpXGhmXBt_zotrlVHmo" alt="">
             <h3 class="movieTitle">The Batman</h3>
-            <button class="bookNowBtn">Book Now</button>
+            <button class="bookNowBtn">
+                <a href="/book-ticket">Book Now</a>
+            </button>
         </div>
 
         <br>

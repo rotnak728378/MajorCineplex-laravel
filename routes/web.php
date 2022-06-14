@@ -37,3 +37,14 @@ Route::get('/new-activity', function() {
 Route::get('/contact', function() {
     return view('pages.contact');
 });
+
+Route::get('/admin1111', function() {
+    return view('pages.admin');
+});
+Route::get('/book-ticket', function() {
+    return view('pages.seat-booking');
+});
+Route::get('/book-ticket', [PagesController::class, 'ticketBooking']);
+
+Route::get('/pages/', [PagesController::class, 'home']);
+Route::get('/pages/home', [PagesController::class, 'home']);
