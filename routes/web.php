@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +38,7 @@ Route::get('/new-activity', function() {
 Route::get('/contact', function() {
     return view('pages.contact');
 });
-
-Route::get('/admin1111', function() {
-    return view('pages.admin');
-});
+Route::get('/movie-cinema', [PagesController::class, 'movieCinema']);
 Route::get('/book-ticket', function() {
     return view('pages.seat-booking');
 });
@@ -48,3 +46,9 @@ Route::get('/book-ticket', [PagesController::class, 'ticketBooking']);
 
 Route::get('/pages/', [PagesController::class, 'home']);
 Route::get('/pages/home', [PagesController::class, 'home']);
+
+Route::get('/admin-side', [UserController::class, 'login']);
+Route::post('/login-user', [UserController::class, 'loginUser'])->name('login-user');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('isLoggedIn');
+Route::get('/add-staff', [UserController::class, 'addStaff'])->middleware('isLoggedIn');
+Route::get('/logout', [UserController::class, 'logout']);

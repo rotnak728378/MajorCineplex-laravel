@@ -1,0 +1,84 @@
+.movie-each-cinema {
+    margin: 100px 150px;
+    color: white;
+
+    .date-selecting {
+        .nav {
+            .nav-link {
+                color: white;
+
+                &.active {
+                    background: $orange;
+                    font-weight: 600;
+                }
+            }
+        }
+        .tab-content {
+            .tab-pane {
+                .movie-date {
+                    padding: 20px;
+                    background-color: rgba(0, 0, 0, 0.836);
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 15px;
+
+                    .card {
+                        background: none;
+                        width: 70%;
+
+                        .row {
+                            .poster {
+                                img {
+                                    width: 150px;
+                                }
+                            }
+                            .col-md-6 {
+                                margin-top: -15px;
+                                margin-left: -120px;
+                                .card-body {
+                                    .theatre {
+                                        font-size: 17px;
+                                    }
+                                    .card-text {
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .time {
+                        width: 30%;
+                        padding-left: 15px;
+                        border-left: 1px solid $orange;
+
+                        button {
+                            background: none;
+                            color: rgb(197, 196, 196);
+                            border: 1px solid rgb(197, 196, 196);
+                            border-radius: 5px;
+                            margin-right: 10px;
+                            padding: 5px 10px;
+
+                            &.active {
+                                background: $orange;
+                                color: white;
+                                border: 1px solid $orange;
+                                font-weight: 600;
+
+                                &:active {
+                                    transform: scale(1.05);
+                                }
+                            }
+                            &.recommend {
+                                background: gray;
+                                color: white;
+                                font-weight: 600;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

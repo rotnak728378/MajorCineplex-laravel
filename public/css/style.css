@@ -389,6 +389,69 @@ body {
   margin-left: 20px;
 }
 
+.movie-each-cinema {
+  margin: 100px 150px;
+  color: white;
+}
+.movie-each-cinema .date-selecting .nav .nav-link {
+  color: white;
+}
+.movie-each-cinema .date-selecting .nav .nav-link.active {
+  background: #FF3D00;
+  font-weight: 600;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.836);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .card {
+  background: none;
+  width: 70%;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .card .row .poster img {
+  width: 150px;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .card .row .col-md-6 {
+  margin-top: -15px;
+  margin-left: -120px;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .card .row .col-md-6 .card-body .theatre {
+  font-size: 17px;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .card .row .col-md-6 .card-body .card-text {
+  font-size: 12px;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .time {
+  width: 30%;
+  padding-left: 15px;
+  border-left: 1px solid #FF3D00;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .time button {
+  background: none;
+  color: #c5c4c4;
+  border: 1px solid #c5c4c4;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .time button.active {
+  background: #FF3D00;
+  color: white;
+  border: 1px solid #FF3D00;
+  font-weight: 600;
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .time button.active:active {
+  transform: scale(1.05);
+}
+.movie-each-cinema .date-selecting .tab-content .tab-pane .movie-date .time button.recommend {
+  background: gray;
+  color: white;
+  font-weight: 600;
+}
+
 :root {
   --selected-color: #2ecc71;
   --occupied-color: #e74c3c;
