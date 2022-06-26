@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Hash;
-use Session;
+// use Hash;
+// use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     public function login() {
         return view('admin.admin');
@@ -42,7 +44,16 @@ class UserController extends Controller
         else return view('admin.staff_dashboard', compact('data'));
     }
     public function addStaff() {
-
+        return view('admin.add_staff');
+    }
+    public function addMovie() {
+        return view('admin.add_movie');
+    }
+    public function editMovie() {
+        return view('admin.edit_movie');
+    }
+    public function userFeedback() {
+        return view('admin.user_feedback');
     }
     public function logout() {
         if(Session::has('loginId')) {

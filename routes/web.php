@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//User side
 Route::get('/', function () {
     return view('pages.home');
 });
@@ -47,8 +47,12 @@ Route::get('/book-ticket', [PagesController::class, 'ticketBooking']);
 Route::get('/pages/', [PagesController::class, 'home']);
 Route::get('/pages/home', [PagesController::class, 'home']);
 
-Route::get('/admin-side', [UserController::class, 'login']);
-Route::post('/login-user', [UserController::class, 'loginUser'])->name('login-user');
-Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('isLoggedIn');
-Route::get('/add-staff', [UserController::class, 'addStaff'])->middleware('isLoggedIn');
-Route::get('/logout', [UserController::class, 'logout']);
+// Admin side
+Route::get('/admin-side', [AdminController::class, 'login']);
+Route::post('/login-user', [AdminController::class, 'loginUser'])->name('login-user');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('isLoggedIn');
+Route::get('/add-staff', [AdminController::class, 'addStaff'])->middleware('isLoggedIn');
+Route::get('/add-movie', [AdminController::class, 'addMovie'])->middleware('isLoggedIn');
+Route::get('/edit-movie', [AdminController::class, 'editMovie'])->middleware('isLoggedIn');
+Route::get('/feedback', [AdminController::class, 'userFeedback'])->middleware('isLoggedIn');
+Route::get('/logout', [AdminController::class, 'logout']);

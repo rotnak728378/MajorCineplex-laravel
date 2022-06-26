@@ -15,5 +15,4 @@ class PagesController extends Controller
     public function ticketBooking() {
         return view('pages.seat-booking');
     }
-
 }
