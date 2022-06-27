@@ -9,10 +9,11 @@
     <title>Add New Movie</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-
+    
     
 
     <!-- Bootstrap core CSS -->
+    
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/style.css">
 
@@ -36,7 +37,7 @@
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
   </head>
-  <body style="background: white">
+  <body style="background: rgba(255, 255, 255, 0.815)">
     
 <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
   <a class="navbar col-md-3 col-lg-2 me-0 px-3" href="#">
@@ -101,39 +102,166 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-light">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">New Movie</h1>
       </div>
 
       <div class="add-movie">
         <div class="container-fluid">
-          <h3>Poster Image</h3>
-          <div class="avatar-upload">
+          <h3>Upload Poster</h3>
+          <form autocomplete="off" method="POST" action="">
+            <div class="avatar-upload">
               <div class="avatar-edit">
                   <input type='file' id="imageUpload" accept="image/*" />
                   <label for="imageUpload">
-                    <svg viewBox="0 0 512 512" width="20" title="pencil-alt">
+                    <svg viewBox="0 0 512 512" width="15" style="margin-left: -10px; margin-top: -10px;" title="pencil-alt">
                       <path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z" />
                     </svg>
                 </label>
               </div>
               <div class="avatar-preview">
-                  <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                  <div id="imagePreview" style="background-image: url(https://t3.ftcdn.net/jpg/02/18/21/86/360_F_218218632_jF6XAkcrlBjv1mAg9Ow0UBMLBaJrhygH.jpg);">
                   </div>
               </div>
-          </div>
+            </div>
+            <br><br>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Movie Title</label>
+              <input type="text" class="form-control">
+              <br>
+              <label for="exampleInputEmail1" class="form-label">Release Date</label>
+              <input type="date" class="form-control">
+              <br>
+              <label for="exampleInputEmail1" class="form-label">Expired Date</label>
+              <input type="date" class="form-control">
+              <br>
+              <label for="exampleInputEmail1" class="form-label">Duration</label>
+              <input type="text" class="form-control">
+              <br>
+              <label for="exampleInputEmail1" class="form-label">Genre</label>
+              <input type="text" class="form-control">
+              <br>
+              <label for="exampleInputEmail1" class="form-label">Trailer Link</label>
+              <input type="text" class="form-control">
+              <br>
+              <label for="exampleFormControlTextarea1" class="form-label">More Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <br>
+              <label for="exampleFormControlTextarea1" class="form-label">Choose showing</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Now showing
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Coming soon
+                </label>
+              </div>
+              <br>
+
+              <label>Select all available cinemas</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                  Major Aeon Mall Phnom Penh
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  Major Aeon Mall Phnom Penh 2
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                  MAJOR PHNOM PENH SORYA
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  MAJOR PLATINUM SIEM REAP
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                  MAJOR BIG C POIPET
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  MAJOR AEON MALL KAMPOT
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  MAJOR AEON MALL KANDAL
+                </label>
+              </div>
+              <br>
+
+              <label>Show time</label><br>
+              <button onclick="add(event)" class="btn btn-secondary p-1">Add</button>
+              <button onclick="remove(event)" class="btn btn-danger p-1">remove</button>
+              <br><br>
+              <input type="time" style="margin-right: 10px; margin-bottom: 10px;">
+              <span id="new_chq"></span>
+              <input type="hidden" value="1" id="total_chq">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+         
       </div>
       </div>
     </main>
   </div>
 </div>
 
-
+<script>
+  function add(event){
+      event.preventDefault();
+      var new_chq_no = parseInt($('#total_chq').val())+1;
+      var new_input="<input type='time' id='new_"+new_chq_no+"' style='margin-right: 10px; margin-bottom: 10px'>";
+      $('#new_chq').append(new_input);
+      $('#total_chq').val(new_chq_no)
+    }
+    function remove(event){
+      event.preventDefault();
+      var last_chq_no = $('#total_chq').val();
+      if(last_chq_no>1){
+        $('#new_'+last_chq_no).remove();
+        $('#total_chq').val(last_chq_no-1);
+      }
+    }
+</script>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="./js/dashboard.js"></script>
-    <script src="./js/add_movie.js"></script>
+    {{-- <script src="./js/add_movie.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                  $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                  $('#imagePreview').hide();
+                  $('#imagePreview').fadeIn(650);
+              }
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+      $("#imageUpload").change(function() {
+          readURL(this);
+      });
+    </script>
   </body>
 </html>
