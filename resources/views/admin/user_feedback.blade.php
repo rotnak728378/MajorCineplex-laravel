@@ -10,18 +10,113 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
-    
+    <link rel="icon" href="{{asset('images/majorcineplex-icon.png')}}">
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{asset('./css/style.css')}}"> --}}
 
     <style>
+      body {
+        /* background: rgba(228, 228, 228, 0.918); */
+      }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
         -moz-user-select: none;
         user-select: none;
+      }
+      @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+      .detailBox {
+          margin: 20px;
+      }
+      .titleBox {
+          background-color:#fdfdfd;
+          padding:10px;
+          border-radius: 7px;
+      }
+      .titleBox label{
+        color:#444;
+        margin:0;
+        display:inline-block;
+      }
+
+      .commentBox {
+          padding:10px;
+          border-top:1px dotted #bbb;
+      }
+      .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+          width:80%;
+      }
+      .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+          width:18%;
+      }
+      .actionBox .form-group * {
+          width:100%;
+      }
+      .taskDescription {
+          margin-top:10px 0;
+      }
+      .commentList {
+          padding:0;
+          list-style:none;
+          /* max-height:200px;
+          overflow:auto; */
+      }
+      .commentList li {
+          margin:0;
+          margin-top: 15px;
+          background: white;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+          padding: 20px;
+          border-radius: 10px;
+      }
+      .commentList li:hover {
+        box-shadow: 0 5px 10px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+      }
+      .commentList li .commentText{
+          margin-left: 10px;
+      }
+      .commentList li .commentText h6 {
+          font-weight: 600;
+          margin-top: -1px;
+      }
+      .commentList li .commentText h6 .email-cmt {
+          font-weight: 500;
+          color: gray;
+      }
+      .commentList li > div {
+          display:table-cell;
+      }
+      .commenterImage {
+          width:30px;
+          margin-right:15px;
+          height:100%;
+          float:left;
+      }
+      .commenterImage img {
+          width:100%;
+          border-radius:50%;
+      }
+      .commentText p {
+          margin:0;
+      }
+      .sub-text {
+          color:#aaa;
+          font-family:verdana;
+          font-size:11px;
+      }
+      .actionBox {
+          /* border-top:1px dotted #bbb; */
+          padding:10px;
+      }
+      .no-data {
+        text-align: center;
+        margin-top: 150px;
+        color: #aaa;
       }
 
       @media (min-width: 768px) {
@@ -63,24 +158,19 @@
               Dashboard
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="/add-staff">
               <span data-feather="user-plus"></span>
               Add staffs
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a class="nav-link" href="/add-movie">
               <span data-feather="film"></span>
               New movie
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/edit-movie">
-              <span data-feather="edit"></span>
-              Edit movie
-            </a>
-          </li>
+         
         </ul>
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -96,12 +186,44 @@
               Email from users
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ticket-library">
+              <span data-feather="book-open"></span>
+              Tickets Library
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h1>Feedback</h1>
+      <div id="feedback-cmt">
+        <div class="detailBox">
+          <div class="titleBox">
+            <label><h3>Feedback and Messages</h3></label>
+          </div>
+          <div class="actionBox">
+              <ul class="commentList">
+                @if(count($msg))
+                  @foreach($msg as $cmt)
+                    <li>
+                        <div class="commenterImage">
+                          <img src="{{asset('/images/user.png')}}" />
+                        </div>
+                        <div class="commentText">
+                            <h6>{{$cmt->first_name}} {{$cmt->last_name}} | <span class="email-cmt">{{$cmt->email}}</span></h6>
+                            <p class="">{{$cmt->message}}</p> 
+                            <span class="date sub-text">{{\Carbon\Carbon::parse($cmt->created_at)->format('d M Y')}}</span> 
+                        </div>
+                    </li>
+                  @endforeach
+                @else 
+                    <h3 class='no-data'>No comments found!</h3>
+                @endif
+              </ul>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </div>

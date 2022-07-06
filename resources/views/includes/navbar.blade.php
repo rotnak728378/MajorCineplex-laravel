@@ -1,6 +1,6 @@
 <div class="menu-bar container-fluid">
     <a class="logo-link navbar-brand" href="/">
-        <img src="./images/majorcineplex.png" alt="Major Cineplex" />
+        <img src="{{asset('./images/majorcineplex.png')}}" alt="Major Cineplex" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,8 +38,9 @@
                 </a>
             </li>
         </ul>
-        <form class="search-bar d-flex">
-            <input class="search-input form-control me-2" type="search-movie" placeholder="Search" aria-label="Search">
+        <form method="POST" action="{{ route('search') }}" autocomplete="off" class="search-bar d-flex" enctype="multipart/form-data">
+            @csrf
+            <input name="search" class="search-input form-control me-2" type="search-movie" placeholder="Search movies" aria-label="Search">
             <button class="search-btn btn btn-outline-success" type="submit">
                 <span class="iconify" data-icon="bx:search-alt-2"></span>
             </button>
@@ -51,10 +52,21 @@
                     EN
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item active" href="#">English</a></li>
-                    <li><a class="dropdown-item" href="#">Khmer (ខ្មែរ)</a></li>
+                    <li><a class="dropdown-item active" role="link" aria-disabled="true" style="color: white; cursor: pointer;">English</a></li>
+                    {{-- <li><a class="dropdown-item" href="#">Khmer (ខ្មែរ)</a></li> --}}
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    var path = "{{ route('autocomplete') }}";
+    $('input.search-input').typeahead({
+        source:  function (query, process) {
+        return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>

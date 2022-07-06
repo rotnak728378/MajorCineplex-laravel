@@ -1,17 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Lato:400,500,600,700&display=swap');
 
 :root {
-    --selected-color: #2ecc71;
-    --occupied-color: #e74c3c;
+    --selected-color: rgb(250, 18, 57);
     --available-color: #fff;
 }
 
 .book {
-    margin-top: 30px;
+    padding-top: 30px;
     .booking-form {
-        margin-top: 60px;
+        margin-top: 70px;
         margin-left: 3%;
-        position: absolute;
+        margin-bottom: 30px;
+        // position: absolute;
+        position: sticky;
+        top: 100px;
         width: 32%;
         // height: 500px;
         padding: 20px;
@@ -70,17 +73,9 @@
                         cursor: pointer;
                         margin-left: 15px;
 
-                        a {
-                            text-decoration: none;
-                            color: white;
-                        }
                         &:nth-child(2) {
                             background-color: white;
-                            
-
-                            a {
-                                color: $orange;
-                            }
+                            color: $orange;
                         }
                         
                     }
@@ -126,18 +121,70 @@
         }
     }
     .booking-page {
+        margin-top: -600px;
+        padding-top: 100px;
         margin-left: 37%;
         margin-right: 5%;
         // padding: 120px;
         font-family: "Lato", sans-serif;
         // background-color: #242333;
         color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // justify-content: center;
+        // height: 100vh;
         overflow: hidden;
+
+        .select-cinema {
+            .wrapper{
+                display: inline-flex;
+                width: fit-content;
+                align-items: center;
+                justify-content: space-evenly;
+                border-radius: 5px;
+                padding: 20px 15px;
+            }
+            .wrapper .option{
+                background: #fff;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                // justify-content: space-evenly;
+                margin: 0 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                padding: 0 10px;
+                border: 2px solid lightgrey;
+                transition: all 0.3s ease;
+
+                .iconify {
+                    margin-left: 20px;
+                    color: white;
+                    font-size: 26px;
+                }
+
+            }
+            input[type="radio"]{
+                display: none;
+            }
+            .cinema-option:checked:checked ~ .option{
+                border-color: $orange;
+                background: $orange;
+
+                .iconify {
+                    color: #2ecc71;
+                }
+            }
+            .wrapper .option span{
+                font-size: 14px;
+                color: #808080;
+            }
+            .cinema-option:checked:checked ~ .option span{
+                color: #fff;
+            }
+        }
     
         .movie-container {
             margin: 20px 0;
@@ -167,6 +214,21 @@
             margin: 3px;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
+            border: 1px solid white;
+
+            input[type="checkbox"] {
+                display: none;
+            }
+            .iconify {
+                font-size: 25px;
+                margin-left: -12px;
+                margin-top: -2px;
+                display: none;
+
+                &.occupied {
+                    display: block;
+                }
+            }
         }
         
         .seat.selected {
@@ -174,7 +236,8 @@
         }
         
         .seat.occupied {
-            background-color: var(--available-color);
+            background-color: unset;
+            border: none;
         }
         
         /* Selects the second row f*/
@@ -203,7 +266,8 @@
             color: #777;
             list-style-type: none;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 50px;
         }
         
         .showcase li {
@@ -214,7 +278,8 @@
         }
         
         .showcase li small {
-            margin-left: 2px;
+            margin-left: 5px;
+            color: white;
         }
         
         .row {
@@ -228,6 +293,7 @@
         
         .screen {
             background-color: #fff;
+            border: 1px solid $orange;
             color: black;
             display: flex;
             align-items: center;
@@ -241,11 +307,21 @@
         }
         
         p.text {
+            text-align: center;
             margin: 5px 0;
         }
         
         p.text span {
             color: #6feaf6;
+        }
+        .to-payment {
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            button {
+                color: white;
+                background-color: $orange;
+            }
         }
           
     }

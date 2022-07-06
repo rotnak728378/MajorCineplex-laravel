@@ -1,0 +1,70 @@
+.body-paid {
+    padding-top: 70px;
+    background: #242333
+}
+.card-ticket {
+    background-color: #161520;
+    border-radius: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    .site-header__title {
+        margin-top: -100px;
+        margin-bottom: -50px;
+        font-size: 20px;
+        color: white;
+    }
+    
+    .main-content {
+        margin-top: -50px;
+        margin-bottom: -50px;
+        .card {
+            background-color: #161520;
+            color: white;
+        }
+       .poster-paid {
+            img {
+                width: 179.2px;
+                padding: 20px 20px 50px 20px;
+            }
+       }
+       .ticket {
+            .ticket-body {
+                h5, p {
+                    text-align: left;
+                }
+                .ticket-text {
+                    .iconify {
+                        font-size: 25px;
+                        margin-right: 10px;
+                    }
+                    .seat {
+                        color: #FF3D00;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .paid {
+                width: 150px;
+                margin-top: -20px;
+            }
+       }
+    }
+    .site-footer {
+        p {
+            color: white;
+        }
+    }
+}
+
+.gohome {
+    margin-top: 100px;
+    .home-to {
+        background-color: $orange;
+        a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+    }
+}

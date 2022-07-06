@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Dashboard</title>
+    <title>Edit Movie</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
@@ -15,8 +15,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('./css/admin_style.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -27,10 +26,21 @@
       }
       .booked .nav-item .nav-link {
         color: gray;
+        border: none;
+        border-bottom: 2px solid unset;
       }
       .booked .nav-item .nav-link.active {
         color: #FF3D00;
-        font-weight: 600
+        font-weight: 600;
+        border: none;
+        background: unset;
+        border-bottom: 2px solid #FF3D00;
+      }
+      .booked .nav-item .nav-link:hover {
+        border: none;
+        background: unset;
+        border-bottom: 2px solid unset;
+        color: black;
       }
 
       @media (min-width: 768px) {
@@ -67,7 +77,7 @@
       <div class="position-sticky pt-3 mt-4">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/dashboard">
+            <a class="nav-link" aria-current="page" href="/dashboard">
               <span data-feather="home"></span>
               Dashboard
             </a>
@@ -100,7 +110,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/ticket-library">
+            <a class="nav-link active" href="/ticket-library">
               <span data-feather="book-open"></span>
               Tickets Library
             </a>
@@ -110,78 +120,126 @@
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <ul class="booked nav nav-tabs mt-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+            <span data-feather="credit-card"></span> 
+            Purchased Users
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+            <span data-feather="bookmark"></span> 
+            Reserved Users
+          </button>
+        </li>
+      </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <div class="booked-library">
             <section class="main-content">
               <div class="container">
-                <br>
-                <h1>Dashboard</h1>
-                <hr>
-                @if(session('success'))
-                  <div class="alert alert-success">
-                      {{ session('success') }}
-                  </div>
-                @endif
-                @if(count($movies))
+                @if(count($data))
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Movies</th>
-                        <th>Released Date</th>
-                        <th>Expired Date</th>
-                        <th>Duration</th>
-                        <th>Showing</th>
-                        <th>Actions</th>
+                        <th>Movie</th>
+                        <th>Purchased by</th>
+                        <th>Cinema</th>
+                        <th>Seats</th>
+                        <th>Booking Date</th>
+                        <th>Watching Date</th>
                       </tr>
                     </thead>
+                    
                     <tbody>
-                      @foreach($movies as $m)
+                      @foreach($data as $d)
                         <tr>
                           <td>
                             <div class="user-info">
                               <div class="user-info__img">
-                                <img src="{{asset($m->poster)}}" alt="User Img">
+                                <img src="{{asset($d->poster)}}" alt="User Img">
                               </div>
                               <div class="user-info__basic">
-                                <h5 class="mb-0">{{$m->movie_title}}</h5>
-                                <p class="text-muted mb-0">{{$m->genre}}</p>
+                                <h6 class="mb-0">{{$d->movie_title}}</h5>
+                                {{-- <p class="text-muted mb-0">@kiranacharyaa</p> --}}
                               </div>
                             </div>
                           </td>
-                          <td>{{\Carbon\Carbon::parse($m->release_date)->format('d/M/Y')}}</td>
-                          <td>{{\Carbon\Carbon::parse($m->due_date)->format('d/M/Y')}}</td>
                           <td>
-                            {{$m->duration}} mins
+                            {{$d->name}}
                           </td>
-                          <td style="{{$m->showing=='Now Showing' ? 'color: #00ff00;':'color: blue;'}}">
-                            {{$m->showing}}
+                          <td>{{$d->cinema_name}}</td>
+                          <td>{{$d->seats}}</td>
+                          <td>
+                            {{\Carbon\Carbon::parse($d->created_at)->format('d M Y | H:i')}}
                           </td>
                           <td>
-                            <div class="dropdown open">
-                              <a href="#!" class="px-2" id="triggerId1" data-toggle="dropdown" aria-haspopup="true"
-                                  aria-expanded="false">
-                                    <i style="color: rgba(29, 29, 29, 0.815);" class="fa fa-ellipsis-v"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId1">
-                                <a class="dropdown-item" href="/edit/{{$m->movie_id}}"><i class="fa fa-pencil mr-1"></i> Edit</a>
-                                <a class="dropdown-item text-danger" onclick="return confirm('Are you sure?')" href="/remove/{{$m->movie_id}}"><i class="fa fa-trash mr-1"></i> Delete</a>
-                              </div>
-                            </div>
+                            {{\Carbon\Carbon::parse($d->watch_time)->format('d M Y | H:i')}}
                           </td>
                         </tr>
                       @endforeach
                     </tbody>
                   </table>
-                @else
-                  <h3 style="color: gray; text-align: center; margin-top: 150px;">No users found!</h3>
+                @else 
+                <h3 style="color: gray; text-align: center; margin-top: 150px;">No users found!</h3>
                 @endif
               </div>
             </section>
           </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          ...
+          <div class="booked-library">
+            <section class="main-content">
+              <div class="container">
+                @if(count($data_reserved))
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Movie</th>
+                        <th>Purchased by</th>
+                        <th>Cinema</th>
+                        <th>Seats</th>
+                        <th>Booking Date</th>
+                        <th>Watching Date</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                      @foreach($data_reserved as $d)
+                        <tr>
+                          <td>
+                            <div class="user-info">
+                              <div class="user-info__img">
+                                <img src="{{asset($d->poster)}}" alt="User Img">
+                              </div>
+                              <div class="user-info__basic">
+                                <h6 class="mb-0">{{$d->movie_title}}</h5>
+                                {{-- <p class="text-muted mb-0">@kiranacharyaa</p> --}}
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            {{$d->name}}
+                          </td>
+                          <td>{{$d->cinema_name}}</td>
+                          <td>{{$d->seats}}</td>
+                          <td>
+                            {{\Carbon\Carbon::parse($d->created_at)->format('d M Y | H:i')}}
+                          </td>
+                          <td>
+                            {{\Carbon\Carbon::parse($d->watch_time)->format('d M Y | H:i')}}
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                @else 
+                  <h3 style="color: gray; text-align: center; margin-top: 150px;">No users found!</h3>
+                @endif
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </main>
@@ -195,8 +253,5 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="./js/dashboard.js"></script>
     <script src="{{asset('./js/ticket_library.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </body>
 </html>

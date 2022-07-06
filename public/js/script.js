@@ -9,18 +9,18 @@ populateUI();
 let ticketPrice = +4.5;
 
 setMovieData = (movieIndex, moviePrice) => {
-  localStorage.setItem("selectedMovieIndex", movieIndex);
-  localStorage.setItem("selectedMoviePrice", moviePrice);
+  // localStorage.setItem("selectedMovieIndex", movieIndex);
+  // localStorage.setItem("selectedMoviePrice", moviePrice);
 };
 
 updateSelectedCount = () => {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
 
-  const seatsIndex = [...selectedSeats].map((seat) => {
-    return [...seats].indexOf(seat);
-  });
+  // const seatsIndex = [...selectedSeats].map((seat) => {
+  //   return [...seats].indexOf(seat);
+  // });
 
-  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+  // localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
 
   const selectedSeatsCount = selectedSeats.length;
 
@@ -29,17 +29,17 @@ updateSelectedCount = () => {
 };
 
 function populateUI() {
-  const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+  // const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
 
-  if (selectedSeats !== null && selectedSeats.length > 0) {
-    seats.forEach((seat, index) => {
-      if (selectedSeats.indexOf(index) > -1) {
-        seat.classList.add("selected");
-      }
-    });
-  }
+  // if (selectedSeats !== null && selectedSeats.length > 0) {
+  //   seats.forEach((seat, index) => {
+  //     if (selectedSeats.indexOf(index) > -1) {
+  //       seat.classList.add("selected");
+  //     }
+  //   });
+  // }
 
-  const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
+  // const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
 
   // if (selectedMovieIndex !== null) {
   //   movieSelect.selectedIndex = selectedMovieIndex;

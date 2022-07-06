@@ -1,236 +1,212 @@
 @extends('layouts.default')
 
 @section('content-items')
+  @foreach($movies as $movie)
+    
     <div class="book">
-      <div class="booking-form">
-        <div class="card">
-          <div class="head">
-            <div class="poster">
-              <img src="./images/sonic2.jpg" src="sonic2">
+      <form method="post" autocomplete="off" action="{{ url('/booking-process') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="booking-form">
+          <div class="card">
+            <div class="head">
+              <div class="poster">
+                <img src="{{asset($movie->poster)}}" alt="poster">
+              </div>
+              <div class="title">
+                <h4>{{$movie->movie_title}}</h4>
+                <div class="movieDetails">
+                  <span class="iconify" data-icon="bi:calendar2-date" data-width="16" data-height="16"></span>
+                  <span>{{ \Carbon\Carbon::parse($movie->release_date)->format('d M Y')}}</span>
+                </div>
+                <div class="movieDetails">
+                    <span class="iconify" data-icon="emojione-monotone:alarm-clock" data-width="16" data-height="16"></span>
+                    <span>{{$movie->duration}}</span>
+                </div>
+                <div class="movieDetails">
+                    <span class="iconify" data-icon="bi:tag" data-width="16" data-height="16"></span>
+                    <span>{{$movie->genre}}</span>
+                </div>
+              </div>
             </div>
-            <div class="title">
-              <h4>Sonic 2</h4>
-              <div class="movieDetails">
-                <span class="iconify" data-icon="bi:calendar2-date" data-width="16" data-height="16"></span>
-                <span>3 Mar 2022</span>
-              </div>
-              <div class="movieDetails">
-                  <span class="iconify" data-icon="emojione-monotone:alarm-clock" data-width="16" data-height="16"></span>
-                  <span>2h 56mn</span>
-              </div>
-              <div class="movieDetails">
-                  <span class="iconify" data-icon="bi:tag" data-width="16" data-height="16"></span>
-                  <span>Fantasy / Advanture / Action</span>
-              </div>
+            
+            <div class="body">
+              @if(session('fail'))
+                  <div class="alert alert-danger">
+                      {{ session('fail') }}
+                  </div>
+              @endif
+                <!--First name-->
+                <div class="box">
+                  <input type="text" name="movieid" value="{{$movie->movie_id}}" hidden>
+                  <input type="text" name="moviePoster" value="{{$movie->poster}}" hidden>
+                  <input type="text" name="movieTotal" value="{{$movie->movie_title}}" hidden>
+                  <label for="Name" class="fl fontLabel"> Name: </label>
+                  <div class="new iconBox">
+                    <span class="iconify" data-icon="icon-park-solid:edit-name"></span>
+                  </div>
+                  <div class="fr">
+                      <input type="text" name="Name" placeholder="Full Name"
+                      class="textBox" autofocus="on" required>
+                  </div>
+                  <div class="clr"></div>
+                </div>
+                <!--First name-->
+
+                <!---Phone No.------>
+                <div class="box">
+                  <label for="phone" class="fl fontLabel"> Phone Number: </label>
+                  <div class="fl iconBox"><span class="iconify" data-icon="ci:phone"></span></div>
+                  <div class="fr">
+                      <input type="text" required name="phoneNo" maxlength="10" placeholder="Phone Number" class="textBox">
+                  </div>
+                  <div class="clr"></div>
+                </div>
+                <!---Phone No.---->
+        
+        
+                <!---Email---->
+                <div class="box">
+                  <label for="email" class="fl fontLabel"> Email: </label>
+                  <div class="fl iconBox"><span class="iconify" data-icon="charm:mail"></span></div>
+                  <div class="fr">
+                      <input type="email" required name="email" placeholder="Email" class="textBox">
+                  </div>
+                  <div class="clr"></div>
+                </div>
+                <!--Email ----->
+        
+                <!---Gender----->
+                <div class="box radio">
+                  <label for="gender" class="fl fontLabel"> Gender: </label>
+                    <input type="radio" name="Gender" value="Male" required checked> Male &nbsp; &nbsp; &nbsp; &nbsp;
+                    <input type="radio" name="Gender" value="Female" required> Female
+                </div>
+                <!---Gender--->
+        
+                <!---Submit Button------>
+                <div class="box">
+                    <button type="submit" name="submit" value="payment" class="payment">PAYMENT</button>
+                    <button type="submit" name="submit" value="reserve" class="reserve">RESERVE</button>
+                    
+                </div>
+                <!---Submit Button----->
             </div>
           </div>
-          
-          <div class="body">
-            <form method="post" autocomplete="on">
-              <!--First name-->
-              <div class="box">
-                <label for="Name" class="fl fontLabel"> Name: </label>
-                <div class="new iconBox">
-                  <span class="iconify" data-icon="icon-park-solid:edit-name"></span>
-                </div>
-                <div class="fr">
-                    <input type="text" name="Name" placeholder="First Name"
-                    class="textBox" autofocus="on" required>
-                </div>
-                <div class="clr"></div>
+        </div>
+        <div class="booking-page" id="payment">
+          <div class="select-cinema">
+            <h3>Select the cinema</h3>
+            <hr>
+            @foreach($cinemas as $cinema)
+              
+              <div class="wrapper">
+                <input type="text" name="cinemaName" value="{{$cinema->cinema_name}}" hidden>
+                <input type="radio" value="{{$cinema->cinema_id}}" class="cinema-option" name="cinema" id="{{$cinema->cinema_id}}" required>
+                  <label for="{{$cinema->cinema_id}}" class="option">
+                    <span>{{$cinema->cinema_name}}</span> 
+                    <span class="iconify" data-icon="typcn:tick"></span>
+                  </label> 
               </div>
-              <!--First name-->
-
-              <!---Phone No.------>
-              <div class="box">
-                <label for="phone" class="fl fontLabel"> Phone Number: </label>
-                <div class="fl iconBox"><span class="iconify" data-icon="ci:phone"></span></div>
-                <div class="fr">
-                    <input type="text" required name="phoneNo" maxlength="10" placeholder="Phone Number" class="textBox">
-                </div>
-                <div class="clr"></div>
-              </div>
-              <!---Phone No.---->
-      
-      
-              <!---Email---->
-              <div class="box">
-                <label for="email" class="fl fontLabel"> Email: </label>
-                <div class="fl iconBox"><span class="iconify" data-icon="charm:mail"></span></div>
-                <div class="fr">
-                    <input type="email" required name="email" placeholder="Email" class="textBox">
-                </div>
-                <div class="clr"></div>
-              </div>
-              <!--Email ----->
-      
-              <!---Gender----->
-              <div class="box radio">
-                <label for="gender" class="fl fontLabel"> Gender: </label>
-                  <input type="radio" name="Gender" value="Male" required> Male &nbsp; &nbsp; &nbsp; &nbsp;
-                  <input type="radio" name="Gender" value="Female" required> Female
-              </div>
-              <!---Gender--->
-      
-              <!---Submit Button------>
-              <div class="box">
-                  <button name="Submit" class="payment"><a href="">PAYMENT</a></button>
-                  <button name="Submit" class="reserve"><a href="">RESERVE</a></button>
-                  
-              </div>
-              <!---Submit Button----->
-            </form>
+            @endforeach
           </div>
-        </div>
+          <br><br>
+          <div class="select-time">
+            <div class="select-cinema">
+              <h3>Select Day</h3>
+              <hr>
+                <div class="wrapper">
+                  <input type="radio" class="cinema-option" name="date" id="today" value="{{\Carbon\Carbon::today()->format('Y-m-d')}}" required>
+                    <label for="today" class="option">
+                      <span>Today</span> 
+                      <span class="iconify" data-icon="typcn:tick"></span>
+                    </label> 
+                </div>
+                <div class="wrapper">
+                  <input type="radio" class="cinema-option" name="date" id="tomorrow" value="{{\Carbon\Carbon::tomorrow()->format('Y-m-d')}}" required>
+                  <label for="tomorrow" class="option">
+                    <span>{{\Carbon\Carbon::tomorrow()->format('d M')}}</span> 
+                    <span class="iconify" data-icon="typcn:tick"></span>
+                  </label> 
+                </div>
+                <div class="wrapper">
+                  <input type="radio" class="cinema-option" name="date" id="dayAfterTmr" value="{{\Carbon\Carbon::today()->addDay(2)->format('Y-m-d')}}" required>
+                  <label for="dayAfterTmr" class="option">
+                    <span>{{\Carbon\Carbon::today()->addDay(2)->format('d M')}}</span> 
+                    <span class="iconify" data-icon="typcn:tick"></span>
+                  </label> 
+                </div>
+            </div>
+          </div>
+          <br><br>
+          <div class="select-time">
+            <div class="select-cinema">
+              <h3>Select Available Time</h3>
+              <hr>
+              @foreach($times as $time)
+                <div class="wrapper">
+                  <input type="radio" required class="cinema-option" name="time" id="{{$time}}" value="{{$time}}">
+                    <label for="{{$time}}" class="option">
+                      <span>{{$time}}</span> 
+                      <span class="iconify" data-icon="typcn:tick"></span>
+                    </label> 
+                </div>
+              @endforeach
+            </div>
+          </div>
 
-      </div>
-      <div class="booking-page">
-        <div class="move-container">
-            {{-- <label>Pick a movie:</label>
-            <select id="movie">
-                <option value="16">Avengers: End Game ($16)</option>
-                <option value="20">Dark Knight ($20)</option>
-                <option value="10">Harry Potter and the Goblet of Fire ($10)</option>
-                <option value="12">Transformers ($12)</option>
-            </select> --}}
-        </div>
-      
+
+          <br><br>
+          <div>
+            <h3>Select Available Seats</h3>
+            <hr>
+          </div>
           <ul class="showcase">
             <li>
               <div class="seat"></div>
-              <small>Available for &ThinSpace;</small> <span style="color: orange"> $ 4.5</span>
+              <small> Available for &ThinSpace;</small> <span style="color: orange"> $ 4.5</span>
             </li>
             <li>
               <div class="seat selected"></div>
-              <small>Selected</small>
+              <small> Selected</small>
             </li>
             <li>
               <div class="seat occupied"></div>
-              <small>Occupied</small>
+              <span class="iconify" data-icon="bi:person-check-fill" style="color: white;" data-width="25" data-height="25"></span>
+              <small> Occupied</small>
             </li>
           </ul>
       
           <div class="container">
             <div class="screen">Screen</div>
-            <div class="row">
-              F
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <div class="row">
-              E
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <div class="row">
-              D
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-            </div>
-            <div class="row">
-              C
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <div class="row">
-              B
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <div class="row">
-              A
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat occupied"></div>
-              <div class="seat occupied"></div>
-              <div class="seat"></div>
-            </div>
+
+              @foreach(range(1, 10) as $y)
+                <div class="row" name="{{$y}}">
+                  {{chr(75-$y)}}
+                  @foreach(range(1, 16) as $x)
+                    <label for="select-seat{{chr(75-$y).$x}}" class="seat {{$occupied[chr(75-$y).$x]}}">
+                      <span class="iconify {{$occupied[chr(75-$y).$x]}}" data-icon="bi:person-check-fill"></span>
+                      <input type="checkbox" name="seats[]" id="select-seat{{chr(75-$y).$x}}" value="{{chr(75-$y).$x}}" {{ $occupied[chr(75-$y).$x] ? 'disabled' : '' }}>
+                    </label>
+                  @endforeach
+                </div>
+                @endforeach
           </div>
       
           <p class="text">
-            You have selected <span id="count">0</span> seats for the price of $<span id="total">0</span>!
+            You have selected <span id="count" style="font-size: 20px; font-weight: 600;">0</span> seats for the price of <span style="font-size: 20px; font-weight: 600;">$</span><span id="total" style="font-size: 20px; font-weight: 600;">0</span>
           </p>
-      </div>
+          <br><br>
+          <a href="#payment" class="to-payment">
+            <button class="btn">
+              GO TO PAYMENT
+            </button>
+          </a>
+
+          <br><br><br>
+        </div>
+      </form>
+      
     </div>
+    
+  @endforeach
 @stop

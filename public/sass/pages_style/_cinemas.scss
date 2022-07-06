@@ -4,19 +4,20 @@
         margin-bottom: 30px;
       
     }
-    .btn-slider{
-        width: fit-content;
-        height: 40px;
-        padding: 10px;
-        border-radius:5px;
-        border: none;
-        color: black;
-    
-        &:nth-child(2) {
-            background-color: #FF3D00;
-            color: white;
+    .btn{
+        
+        background-color: $orange;
+        box-shadow: none;
+        border: 2px solid white;
+
+        &:hover {
+            transform: scale(1.03);
         }
-    
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
     }
     
     .image-slider{
@@ -37,24 +38,7 @@
             }
         }
     }
-    .search {
-        .search-input {
-            margin-top: 20px;
-            margin-left: 150px;
-            width: 400px;
-            border: none;
-            padding: 5px 15px;
-            outline: none;
-            border-radius: 5px;
-        }
-        .btn-search {
-            padding: 5px 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: $orange;
-            color: white;
-        }
-    }
+   
     .container-cinema {
         margin-top: 40px;
         margin-left: 150px;

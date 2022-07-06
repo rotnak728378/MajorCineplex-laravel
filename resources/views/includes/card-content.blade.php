@@ -1,467 +1,121 @@
-<div class="filter-bar">
-    <div class="dropdown">
-        <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="iconify" data-icon="icons8:filter"></span>
-            Filter
-        </a>
-      
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item active" href="#">NOW SHOWING</a></li>
-          <li><a class="dropdown-item" href="#">COMING SOON</a></li>
-          <li><a class="dropdown-item" href="#">4DX</a></li>
-          <li><a class="dropdown-item" href="#">KIDS CINEMA</a></li>
-        </ul>
-    </div>
+<div class="filter-bar" {{request()->path() == '/' ? null : 'hidden'}}>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+            <span class="iconify" data-icon="bxs:movie-play"></span>
+            Now Showing
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+            <span class="iconify" data-icon="medical-icon:i-waiting-area"></span>
+            Coming Soon
+        </button>
+      </li>
+    </ul>
 </div>
-<div class="movie-contents">
-    <div class="row-movie">
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/movie-jailangkung1.jpg" alt="Jailangkun" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Jailangkun 1</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            25/Mar/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 33mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Horror
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+        <div class="movie-contents">
+            <div class="row-movie">     
+                @if(count($movies))
+                    @foreach($movies as $movie)
+                        <div class="col">
+                            <div class="movie-item">
+                                <div class="thumbnail">
+                                    <img src="{{asset($movie->poster)}}" alt="Poster" />
+                                </div>
+                                <div class="thumb-info">
+                                    <article>
+                                        <h6>{{$movie->movie_title}}</h6>
+                                        <p>
+                                            <span class="iconify" data-icon="ic:round-date-range"></span>
+                                            {{ \Carbon\Carbon::parse($movie->release_date)->format('d/M/Y')}}
+                                        </p>
+                                        <p>
+                                            <span class="iconify" data-icon="bxs:time-five"></span>
+                                            {{$movie->duration}} mins
+                                        </p>
+                                        <p>
+                                            <span class="iconify" data-icon="ci:tag"></span>
+                                            {{$movie->genre}}
+                                        </p>
+                                    </article>
+                                    <article>
+                                        <p>
+                                            <a href="/movie-booking-info/{{$movie->movie_id}}" class="booking-btn">
+                                                More Info
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <a href="/movie-booking-info/{{$movie->movie_id}}/book-ticket" class="booking-btn">
+                                                Book Now
+                                            </a>
+                                        </p>
+                                    </article>
+                                </div>
+                            </div>
+                            <h6 style="font-size: 13px; margin-top: 5px;">{{$movie->movie_title}}</h6>
+                            <p style="font-size: 12px; color: orange;">{{ \Carbon\Carbon::parse($movie->release_date)->format('d M Y')}}</p>
             
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/loveistheanswer.gif" alt="loveistheanswer" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Love is the Answer</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            25/Mar/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 45mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Romance
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
+                        </div>
+                   
+                    @endforeach
+                @else
+                    <h1 style="margin-top: 200px; margin-bottom: 200px;">No data found</h1>
+                @endif
             </div>
         </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/thelostcity-movie.jpg" alt="thelostcity" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>The Lost City</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            24/Mar/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 46mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Action / Comedy / Romance
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-           
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/sonic2.jpg" alt="sonic2" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Sonic the Hedgehog 2</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            08/Apr/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            2h 02mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Action / Comedy / Adventure
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+        <div class="movie-contents">
+            <div class="row-movie">
+                @if(count($movies_soon))
+                    @foreach($movies_soon as $movie)
+                        <div class="col">
+                            <div class="movie-item">
+                                <div class="thumbnail">
+                                    <img src="{{asset($movie->poster)}}" alt="Poster" />
+                                </div>
+                                <div class="thumb-info">
+                                    <article>
+                                        <h6>{{$movie->movie_title}}</h6>
+                                        <p>
+                                            <span class="iconify" data-icon="ic:round-date-range"></span>
+                                            {{ \Carbon\Carbon::parse($movie->release_date)->format('d/M/Y')}}
+                                        </p>
+                                        <p>
+                                            <span class="iconify" data-icon="bxs:time-five"></span>
+                                            {{$movie->duration}} mins
+                                        </p>
+                                        <p>
+                                            <span class="iconify" data-icon="ci:tag"></span>
+                                            {{$movie->genre}}
+                                        </p>
+                                    </article>
+                                    <article>
+                                        <p>
+                                            <a href="/movie-booking-info/{{$movie->movie_id}}" class="booking-btn">
+                                                More Info
+                                            </a>
+                                        </p>
+                                        <p {{$movie->showing == 'Coming Soon' ? 'hidden':''}}>
+                                            <a href="/movie-booking-info/{{$movie->movie_id}}/book-ticket" class="booking-btn">
+                                                Book Now
+                                            </a>
+                                        </p>
+                                    </article>
+                                </div>
+                            </div>
+                            <h6 style="font-size: 13px; margin-top: 5px;">{{$movie->movie_title}}</h6>
+                            <p style="font-size: 12px; color: orange;">{{ \Carbon\Carbon::parse($movie->release_date)->format('d M Y')}}</p>
+            
+                        </div>
+                    @endforeach
+                @else
+                <h1 style="margin-top: 150px; margin-bottom: 170px; color: rgba(255, 255, 255, 0.74);">No data found</h1>
+                @endif
             </div>
         </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/morbius.jpg" alt="morbius" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Morbius</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            31/Mar/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 44mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Action / Adventure
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/peenak3.jpg" alt="peenak3" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Pee Nak 3</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            22/Apr/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 51mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Horror / Comedy
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/turning red.jpg" alt="turning" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Turning Red</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            10/Mar/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 39mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Animation
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/fantasticBeast-TheSecretOfDumbledore.jpg" alt="fantasticBeast-TheSecretOfDumbledore" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>
-                            The Fantastic Beasts: The Secret Of Dumbledore</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            14/Apr/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            2h 23mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Action / Fantasy
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p> 
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/labyrinth.jpg" alt="labyrinth" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Labyrinth</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            08/Apr/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 30mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Horror
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/cracked.jpg" alt="cracked" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Cracked</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            25/Mar/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 33mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Horror
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/coda.jpg" alt="coda" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Coda</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            21/Apr/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            1h 51mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Musical
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="movie-item">
-                <div class="thumbnail">
-                    <img src="./images/doctorStrange.gif" alt="doctorStrange" />
-                </div>
-                <div class="thumb-info">
-                    <article>
-                        <h6>Doctor Strange In The Multiverse Of Madness</h6>
-                        <p>
-                            <span class="iconify" data-icon="ic:round-date-range"></span>
-                            05/May/2022
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="bxs:time-five"></span>
-                            2h 6mins
-                        </p>
-                        <p>
-                            <span class="iconify" data-icon="ci:tag"></span>
-                            Action / Adventure
-                        </p>
-                    </article>
-                    <article>
-                        <p>
-                            <a href="/movie-booking-info" class="booking-btn">
-                                More Info
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#" class="booking-btn">
-                                Buy Ticket(s)
-                            </a>
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>

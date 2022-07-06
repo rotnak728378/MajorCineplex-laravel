@@ -15,17 +15,13 @@ use App\Http\Controllers\AdminController;
 |
 */
 //User side
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [PagesController::class, 'home']);
+Route::get('/search-result/{id}', [PagesController::class, 'searchResult']);
+Route::post('/search', [PagesController::class, 'search'])->name('search');
+Route::get('autocomplete', [PagesController::class, 'autocomplete'])->name('autocomplete');
+Route::get('/cinema', [PagesController::class, 'fetchCinema']);
 
-Route::get('/cinema', function() {
-    return view('pages.cinema');
-});
-
-Route::get('/movie-booking-info', function() {
-    return view('pages.movie-booking-info');
-});
+Route::get('/movie-booking-info/{id}', [PagesController::class, "movieBookingInfo"]);
 
 Route::get('/promotion', function() {
     return view('pages.promotion');
@@ -34,18 +30,12 @@ Route::get('/promotion', function() {
 Route::get('/new-activity', function() {
     return view('pages/new-activity');
 });
-
-Route::get('/contact', function() {
-    return view('pages.contact');
-});
-Route::get('/movie-cinema', [PagesController::class, 'movieCinema']);
-Route::get('/book-ticket', function() {
-    return view('pages.seat-booking');
-});
-Route::get('/book-ticket', [PagesController::class, 'ticketBooking']);
-
-Route::get('/pages/', [PagesController::class, 'home']);
-Route::get('/pages/home', [PagesController::class, 'home']);
+Route::get('/contact', [PagesController::class, 'contact']);
+Route::post('/sent', [PagesController::class, 'sent'])->name('sent');
+Route::get('/contact/sent', [PagesController::class, 'sendContact']);
+Route::get('/cinema/{id}', [PagesController::class, 'movieCinema']);
+Route::get('/movie-booking-info/{id}/book-ticket', [PagesController::class, 'ticketBooking']);
+Route::post('/booking-process', [PagesController::class, 'storeBooked']);
 
 // Admin side
 Route::get('/admin-side', [AdminController::class, 'login']);
@@ -53,6 +43,11 @@ Route::post('/login-user', [AdminController::class, 'loginUser'])->name('login-u
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('isLoggedIn');
 Route::get('/add-staff', [AdminController::class, 'addStaff'])->middleware('isLoggedIn');
 Route::get('/add-movie', [AdminController::class, 'addMovie'])->middleware('isLoggedIn');
-Route::get('/edit-movie', [AdminController::class, 'editMovie'])->middleware('isLoggedIn');
+Route::post('/add-movie', [AdminController::class, 'postMovie'])->middleware('isLoggedIn');
+Route::get('/edit/{id}', [AdminController::class, 'editMovie'])->middleware('isLoggedIn');
+Route::post('/edit', [AdminController::class, 'edit'])->middleware('isLoggedIn')->name('edit');
+Route::get('/remove/{id}', [AdminController::class, 'remove'])->middleware('isLoggedIn');
+Route::get('/ticket-library', [AdminController::class, 'ticketLibrary'])->middleware('isLoggedIn');
 Route::get('/feedback', [AdminController::class, 'userFeedback'])->middleware('isLoggedIn');
 Route::get('/logout', [AdminController::class, 'logout']);
+

@@ -37,16 +37,16 @@
         <p>098-888-126</p>
         <div class="social-media">
             <a href="https://www.facebook.com/majorcineplexcambodia/">
-                <img src="./images/facebook-logo.webp" alt="facebook">
+                <img src="{{asset('./images/facebook-logo.webp')}}"="facebook">
             </a>
             <a href="https://www.instagram.com/majorcambodia/">
-                <img src="./images/Instagram.webp" alt="instagram">
+                <img src="{{asset('./images/Instagram.webp')}}"="instagram">
             </a>
             <a href="https://page.line.me/majorcineplex">
-                <img src="./images/Line-Logo.jpg" alt="line">
+                <img src="{{asset('./images/Line-Logo.jpg')}}"="line">
             </a>
             <a href="https://t.me/majorcineplexcambodia">
-                <img src="./images/Telegram_logo.svg.webp" alt="telegram">
+                <img src="{{asset('./images/Telegram_logo.svg.webp')}}"="telegram">
             </a>
         </div>
     </div>
@@ -56,10 +56,10 @@
 <div class="bottom-footer">
     <div class="app-download">
         <div class="store">
-            <img src="./images/play-store.webp" alt="playstore">
+            <img src="{{asset('./images/play-store.webp')}}"="playstore">
         </div>
         <div class="store">
-            <img src="./images/app-store.webp" alt="app-store">
+            <img src="{{asset('./images/app-store.webp')}}"="app-store">
         </div>
     </div>
     <div class="copyright">

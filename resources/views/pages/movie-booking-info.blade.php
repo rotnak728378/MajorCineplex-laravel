@@ -2,86 +2,54 @@
 
 @section('content-items')
 <div class="movie-info">
+    @foreach($movies as $movie)
     <!-- iframe movie trailer -->
     <div class="iframe-container">
-        <iframe id="trailer" class="embed-responsive-item" src="https://www.youtube.com/embed/mqqft2x_Aa4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="trailer" class="embed-responsive-item" src="{{$movie->trailer}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {{-- <iframe width="710" height="399" src="https://www.youtube.com/embed/3Smtyr0oCP4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
     </div>
 
     <hr class="line">
 
     <!-- Movie description and details -->
     <div class="movieDescription">
-        <div>
-            <img class="moviePoster" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRBkxgl2A2PhE_6tklFLT0bxn5NLhvhsnpXGhmXBt_zotrlVHmo" alt="">
-            <h3 class="movieTitle">The Batman</h3>
-            <button class="bookNowBtn">
-                <a href="/book-ticket">Book Now</a>
-            </button>
-        </div>
-
-        <br>
-        <br>
         
-
-        <!-- descriptions -->
-        <div class="categories">
-            <div class="movieDetails">
-                <span class="iconify" data-icon="bi:calendar2-date" data-width="16" data-height="16"></span>
-                <span>3 Mar 2022</span>
-            </div>
-            <div class="movieDetails">
-                <span class="iconify" data-icon="emojione-monotone:alarm-clock" data-width="16" data-height="16"></span>
-                <span>2h 56mn</span>
-            </div>
-            <div class="movieDetails">
-                <span class="iconify" data-icon="bi:tag" data-width="16" data-height="16"></span>
-                <span>Fantasy / Advanture / Action</span>
+            <div>
+                <img class="moviePoster" src="{{asset($movie->poster)}}" alt="">
+                <h3 class="movieTitle">{{$movie->movie_title}}</h3>
+                <button class="bookNowBtn" {{$movie->showing == 'Coming Soon' ? 'hidden':''}}>
+                    <a href="/movie-booking-info/{{$movie->movie_id}}/book-ticket">Book Now</a>
+                </button>
             </div>
 
             <br>
+            <br>
+        
 
-            <div class="more-info">
-                <h5 class="textDecor">More Decriptions</h5>
+        <!-- descriptions -->
+            <div class="categories">
+                <div class="movieDetails">
+                    <span class="iconify" data-icon="bi:calendar2-date" data-width="16" data-height="16"></span>
+                    <span>{{ \Carbon\Carbon::parse($movie->release_date)->format('d/M/Y')}}</span>
+                </div>
+                <div class="movieDetails">
+                    <span class="iconify" data-icon="emojione-monotone:alarm-clock" data-width="16" data-height="16"></span>
+                    <span>{{$movie->duration}} mins</span>
+                </div>
+                <div class="movieDetails">
+                    <span class="iconify" data-icon="bi:tag" data-width="16" data-height="16"></span>
+                    <span>{{$movie->genre}}</span>
+                </div>
+
                 <br>
-                <p>: A point-of-view driven noir tale with heavy focus on Batman's detective work. A stand-alone story with no connection to the DCEU.</p>
-                <div class="row">
-                    <div class="col col-sm-2">
-                        <b>Country</b>
-                    </div>
-                    <div class="col col-sm-10">
-                        : United States of America
-                    </div>    
-                </div>
 
-                <div class="row">
-                    <div class="col col-sm-2">
-                        <b>Production</b>
-                    </div>
-                    <div class="col col-sm-10">
-                        : DC Entertainment, Branded Entertainment/Batfilm Productions, Atlas Entertainment, Cruel & Unusual Films, Warner Bros. Pictures, 6th & Idaho Productions, Mad Ghost Productions, DC Comics, DC Films, Dylan Clark Productions
-                    </div>    
-                </div>
+                <div class="more-info">
+                    <h5 class="textDecor">Overview</h5>
+                    <br>
+                    <p>{{$movie->description}}</p>
 
-                <div class="row">
-                    <div class="col col-sm-2">
-                        <b>Casts</b>
-                    </div>
-                    <div class="col col-sm-10">
-                        : Robert Pattinson, Vanessa Kirby, Jeffrey Wright, Jonah Hill, Peter Sarsgaard
-                    </div>    
                 </div>
-
-                <div class="row">
-                    <div class="col col-sm-2">
-                        <b>Tags</b>
-                    </div>
-                    <div class="col col-sm-10">
-                        : Watch The Batman Online Free, The Batman Online Free, Where to watch The Batman, The Batman movie free online, The Batman free online
-                    </div>    
-                </div>
-
             </div>
-        </div>
         
     </div>
 
@@ -89,7 +57,7 @@
 
     <!-- you may also like container -->
 
-    <div class="mayAlsoLike">
+    {{-- <div class="mayAlsoLike">
 
         <h4 class="textDecor">You may also like:</h4>
 
@@ -100,7 +68,8 @@
             <img class="otherPoster" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRBkxgl2A2PhE_6tklFLT0bxn5NLhvhsnpXGhmXBt_zotrlVHmo" alt="">
             <img class="otherPoster" src="https://m.media-amazon.com/images/I/71kvH7JJFlL._AC_SY679_.jpg" alt="">
         </div>
-    </div>
+    </div> --}}
+    @endforeach
 </div>
 
 @endsection

@@ -6,15 +6,21 @@
             <div class="contact-form">
                 <div class="row">
                     <div class="col-sm-7">
-                        <form id="ajax-contact" method="post" action="contact-form-mail.php" role="form">
+                        @if(session('fail'))
+                            <div class="alert alert-danger">
+                                {{ session('fail') }}
+                            </div>
+                        @endif
+                        <form id="ajax-contact" method="post" action="{{ route('sent') }}" role="form" enctype="multipart/form-data">
+                            @csrf
                             <div class="messages" id="form-messages"></div>
                             <div class="controls">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="form_name">Firstname *</label>
-                                            <input id="form_name" type="text" name="name" class="form-control"
-                                                placeholder="Please enter your firstname *" required="required"
+                                            <input id="form_name" type="text" name="firstname" class="form-control"
+                                                placeholder="Firstname" required="required"
                                                 data-error="Firstname is required.">
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -23,7 +29,7 @@
                                         <div class="form-group">
                                             <label for="form_lastname">Lastname *</label>
                                             <input id="form_lastname" type="text" name="surname" class="form-control"
-                                                placeholder="Please enter your lastname *" required="required"
+                                                placeholder="Lastname" required="required"
                                                 data-error="Lastname is required.">
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -34,7 +40,7 @@
                                         <div class="form-group">
                                             <label for="form_email">Email *</label>
                                             <input id="form_email" type="email" name="email" class="form-control"
-                                                placeholder="Please enter your email *" required="required"
+                                                placeholder="Email" required="required"
                                                 data-error="Valid email is required.">
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -43,8 +49,8 @@
                                         <div class="form-group">
                                             <label for="form_phone">Phone*</label>
                                             <input id="form_phone" type="tel" name="phone" class="form-control"
-                                                placeholder="Please enter your phone*" required
-                                                oninvalid="setCustomValidity('Plz enter your correct phone number ')"
+                                                placeholder="Phone number" required
+                                                oninvalid="setCustomValidity('Please enter your correct phone number ')"
                                                 onchange="try{setCustomValidity('')}catch(e){}">
 
                                         </div>
@@ -55,20 +61,14 @@
                                         <div class="form-group">
                                             <label for="form_message">Message *</label>
                                             <textarea id="form_message" name="message" class="form-control"
-                                                placeholder="Message for me *" rows="4" required="required"
+                                                placeholder="What is your message?" rows="10" required="required"
                                                 data-error="Please,leave us a message."></textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <br>
-                                        <input type="submit" class="btn btn-black bg-warning" value="Send message">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <br>
-                                        <small class="text-muted"><strong>*</strong> These fields are required.</small>
+                                        <button type="submit" class="btn btn-black bg-warning">Send message</button>
                                     </div>
                                 </div>
                             </div>
@@ -79,43 +79,54 @@
                     <div class="col-sm-5 text-white">
                         <div class="row col1">
                             <div class="col-xs-3">
-                                <i class="fa fa-map-marker" style="font-size:16px;"></i>   Address
+                                <h5>
+                                    <i class="fa fa-map-marker" style="font-size:16px;"></i>   Address
+                                </h5>
                             </div>
                             <div class="col-xs-9">
-                                អាគារលេខ ៨, សង្កាត់បឹងកក់១ St 315, Phnom Penh
+                                Nowadays we have 5 branches which there are 3 located in Phnom Penh, 1 in Battambang, and another one in Poipet.
                             </div>
                         </div>
-
+                        <br>
+                        <h5>Business Development:</h5>
                         <div class="row col1">
                             <div class="col-sm-3">
-                                <i class="fa fa-phone"></i>   Phone
+                                <i class="fa fa-phone"></i>   Tel
                             </div>
                             <div class="col-sm-9">
-                                +855 061 481 979
+                                : 093 771 000
                             </div>
                         </div>
-                        <div class="row col1">
-                            <div class="col-sm-3">
-                                <i class="fa fa-fax"></i>   Fax
-                            </div>
-                            <div class="col-sm-9">
-                                061 481 567
-                            </div>
-                        </div>
+        
                         <div class="row col1">
                             <div class="col-sm-3">
                                 <i class="fa fa-envelope"></i>   Email
                             </div>
                             <div class="col-sm-9">
-                                <a href="mailto:info@yourdomain.com">paragoniu.edu.kh/</a> <br> <a
-                                    href="mailto:support@yourdomain.com">support@paragoniu.edu.kh/</a>
+                                :<a href="mailto:sale@majorcineplex.com.kh"> sale@majorcineplex.com.kh</a> <br> 
                             </div>
-                        </div><br>
-                        <iframe width="100%" height="230" frameborder="0" style="border-radius:0px;" scrolling="no"
-                            marginheight="0" marginwidth="0"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.573419426917!2d104.89579291494583!3d11.582407946965814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109517bf7757d23%3A0x965c34888684bf1!2sParagon%20International%20University!5e0!3m2!1sen!2skh!4v1649727868924!5m2!1sen!2skh"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade" style="border-radius:20px;"></iframe>
+                        </div>
+                        <br>
+                        <h5>Marketing:</h5>
+                        <div class="row col1">
+                            <div class="col-sm-3">
+                                <i class="fa fa-phone"></i>   Tel
+                            </div>
+                            <div class="col-sm-9">
+                                : 010 289 893
+                            </div>
+                        </div>
+        
+                        <div class="row col1">
+                            <div class="col-sm-3">
+                                <i class="fa fa-envelope"></i>   Email
+                            </div>
+                            <div class="col-sm-9">
+                                :<a href="mailto:digital@majorcineplex.com.kh"> digital@majorcineplex.com.kh</a> <br> 
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=517&amp;height=464&amp;hl=en&amp;q=Major cineplex&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.kokagames.com/fnf-friday-night-funkin-mods/">Friday Night Funkin Mods</a></div><style>.mapouter{position:relative;text-align:right;width:517px;height:464px;}.gmap_canvas {overflow:hidden;background:none!important;width:517px;height:464px;}.gmap_iframe {width:517px!important;height:464px!important;}</style></div>
                     </div>
                 </div>
 
