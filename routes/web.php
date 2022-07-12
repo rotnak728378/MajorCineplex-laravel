@@ -16,9 +16,8 @@ use App\Http\Controllers\AdminController;
 */
 //User side
 Route::get('/', [PagesController::class, 'home']);
-Route::get('/search-result/{id}', [PagesController::class, 'searchResult']);
-Route::post('/search', [PagesController::class, 'search'])->name('search');
-Route::get('autocomplete', [PagesController::class, 'autocomplete'])->name('autocomplete');
+Route::get('/search', [PagesController::class, 'search']);
+// Route::get('autocomplete', [PagesController::class, 'autocomplete'])->name('autocomplete');
 Route::get('/cinema', [PagesController::class, 'fetchCinema']);
 
 Route::get('/movie-booking-info/{id}', [PagesController::class, "movieBookingInfo"]);
@@ -50,4 +49,5 @@ Route::get('/remove/{id}', [AdminController::class, 'remove'])->middleware('isLo
 Route::get('/ticket-library', [AdminController::class, 'ticketLibrary'])->middleware('isLoggedIn');
 Route::get('/feedback', [AdminController::class, 'userFeedback'])->middleware('isLoggedIn');
 Route::get('/logout', [AdminController::class, 'logout']);
+Route::get('/search-in-admin', [AdminController::class, 'searchAdmin'])->middleware('isLoggedIn');
 

@@ -6,6 +6,37 @@
     <div class="book">
       <form method="post" autocomplete="off" action="{{ url('/booking-process') }}" enctype="multipart/form-data">
         @csrf
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" style="z-index: 99999999" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Verifying Payment</h5>
+                <button type="button" style="border: none; box-shadow: none;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Tickets Price: <b style="color: #FF3D00;">$<span id="price">0</span></b>
+                <br>
+                <h6>Payment Method: <b style="color: rgb(0, 38, 255)">ABA</b></h6>
+                <br>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label"><b>Account ID:</b></label>
+                  <input type="text" class="form-control" placeholder="### ### ###" accept="Number" minlength="9" maxlength="9">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label"><b>Verifying code ( 4 digits)</b></label>
+                  <input type="password" placeholder="####" class="form-control" minlength="4" maxlength="4">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" name="submit" value="payment" class="payment btn" style="color: white; background: #FF3D00;">Verify</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{-- Information form  --}}
         <div class="booking-form">
           <div class="card">
             <div class="head">
@@ -13,7 +44,7 @@
                 <img src="{{asset($movie->poster)}}" alt="poster">
               </div>
               <div class="title">
-                <h4>{{$movie->movie_title}}</h4>
+                <h4 style="color: orange; font-weight: 600;">{{$movie->movie_title}}</h4>
                 <div class="movieDetails">
                   <span class="iconify" data-icon="bi:calendar2-date" data-width="16" data-height="16"></span>
                   <span>{{ \Carbon\Carbon::parse($movie->release_date)->format('d M Y')}}</span>
@@ -82,12 +113,17 @@
                     <input type="radio" name="Gender" value="Female" required> Female
                 </div>
                 <!---Gender--->
-        
+
+
+
                 <!---Submit Button------>
                 <div class="box">
-                    <button type="submit" name="submit" value="payment" class="payment">PAYMENT</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="payment" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      PAYMENT
+                    </button>
+                    {{-- <button type="submit" name="submit" value="payment" class="payment">PAYMENT</button> --}}
                     <button type="submit" name="submit" value="reserve" class="reserve">RESERVE</button>
-                    
                 </div>
                 <!---Submit Button----->
             </div>
@@ -95,7 +131,7 @@
         </div>
         <div class="booking-page" id="payment">
           <div class="select-cinema">
-            <h3>Select the cinema</h3>
+            <h3 style="font-weight: 600">Select the cinema</h3>
             <hr>
             @foreach($cinemas as $cinema)
               
@@ -112,7 +148,7 @@
           <br><br>
           <div class="select-time">
             <div class="select-cinema">
-              <h3>Select Day</h3>
+              <h3 style="font-weight: 600">Select Day</h3>
               <hr>
                 <div class="wrapper">
                   <input type="radio" class="cinema-option" name="date" id="today" value="{{\Carbon\Carbon::today()->format('Y-m-d')}}" required>
@@ -131,7 +167,7 @@
                 <div class="wrapper">
                   <input type="radio" class="cinema-option" name="date" id="dayAfterTmr" value="{{\Carbon\Carbon::today()->addDay(2)->format('Y-m-d')}}" required>
                   <label for="dayAfterTmr" class="option">
-                    <span>{{\Carbon\Carbon::today()->addDay(2)->format('d M')}}</span> 
+                    <span>{{\Carbon\Carbon::today()->addDay(2)->format('d M')}}</span>
                     <span class="iconify" data-icon="typcn:tick"></span>
                   </label> 
                 </div>

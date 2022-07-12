@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookedTickets;
 use App\Models\MovieInfo;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -36,12 +37,21 @@ class AdminController extends Controller
     }
     public function dashboard() {
         $movies = DB::select('select * from table_movie where display=true order by movie_title');
+        $cinemas = DB::select('select * from cinemas');
+        $customers = DB::select('select * from table_booked');
+        $paid_seat = DB::select('select * from table_booked where payment="paid"');
+        $msg = DB::select('select * from table_message');
+        $staffs = DB::select('select * from users where role="staff"');
+        $seats_count = 0;
+        foreach($paid_seat as $p) {
+            $seats_count += count(explode(',',$p->seats));
+        }
         $data = array();
         if(Session::has('loginId')) {
             $data = User::where('id', '=', Session::get('loginId'))->first();
         }
         if($data->role == 'admin')
-            return view('admin.dashboard', ['data'=>$data, 'movies'=>$movies]);
+            return view('admin.dashboard', ['data'=>$data, 'movies'=>$movies, 'cinemas'=>$cinemas, 'customers'=>$customers, 'seats_amount'=>$seats_count, 'msg'=>$msg, 'staffs'=>$staffs]);
         else return view('admin.staff_dashboard', ['data'=>$data, 'movies'=>$movies]);
     }
     public function addStaff() {
@@ -127,8 +137,8 @@ class AdminController extends Controller
         }
     }
     public function ticketLibrary() {
-        $data = DB::select('select movie_title, poster, name, cinema_name, seats, watch_time, table_booked.created_at from table_booked inner join table_movie inner join cinemas on table_booked.movie_id=table_movie.movie_id and table_booked.cinema_id=cinemas.cinema_id where display=true and payment="paid" order by movie_title');
-        $data_reserved = DB::select('select movie_title, poster, name, cinema_name, seats, watch_time, table_booked.created_at from table_booked inner join table_movie inner join cinemas on table_booked.movie_id=table_movie.movie_id and table_booked.cinema_id=cinemas.cinema_id where display=true and payment="reserved" order by movie_title');
+        $data = DB::select('select movie_title, poster, name, cinema_name, seats, ticket_checkin,watch_time, table_booked.created_at from table_booked inner join table_movie inner join cinemas on table_booked.movie_id=table_movie.movie_id and table_booked.cinema_id=cinemas.cinema_id where display=true and payment="paid" order by movie_title');
+        $data_reserved = DB::select('select movie_title, poster, name, cinema_name, seats, ticket_checkin,watch_time, table_booked.created_at from table_booked inner join table_movie inner join cinemas on table_booked.movie_id=table_movie.movie_id and table_booked.cinema_id=cinemas.cinema_id where display=true and payment="reserved" order by movie_title');
         return view('admin.ticket_library', ['data'=>$data, 'data_reserved'=>$data_reserved]);
     }
     public function userFeedback() {
@@ -140,5 +150,17 @@ class AdminController extends Controller
             Session::pull('loginId');
             return redirect('admin-side');
         }
+    }
+
+    public function searchAdmin() {
+        $search_text = $_GET['query'];
+        $movies = MovieInfo::where('movie_title', 'like', '%'.$search_text.'%')->get();
+        
+        $temp_pur = 'select movie_title, poster, name, cinema_name, seats, ticket_checkin,watch_time, table_booked.created_at from table_booked inner join table_movie inner join cinemas on table_booked.movie_id=table_movie.movie_id and table_booked.cinema_id=cinemas.cinema_id where display=true and (movie_title like "%'.$search_text.'%" or name like "%'.$search_text.'%") and payment="paid"';
+        $pur_user = DB::select($temp_pur);
+
+        $temp_res = 'select movie_title, poster, name, cinema_name, seats, ticket_checkin, watch_time, table_booked.created_at from table_booked inner join table_movie inner join cinemas on table_booked.movie_id=table_movie.movie_id and table_booked.cinema_id=cinemas.cinema_id where display=true and (movie_title like "%'.$search_text.'%" or name like "%'.$search_text.'%") and payment="reserved"';
+        $res_user = DB::select($temp_res);
+        return view('admin.search', ['movies'=>$movies, 'search_text'=>$search_text, 'data'=>$pur_user, 'data_reserved'=>$res_user]);
     }
 }

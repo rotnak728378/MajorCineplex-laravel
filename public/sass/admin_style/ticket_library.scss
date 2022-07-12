@@ -4,7 +4,25 @@ $primary: #007bff;
 $success: #28a745;
 $warning: #ffc107;
 $danger: #dc3545;
+$orange: #FF3D00;
+* {
+    scroll-behavior: smooth;
 
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border: 3px solid transparent;
+        background-clip: padding-box;
+        border-radius: 5px;
+        background-color: $orange;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+}
 body {
 	background: #f9f9f9;
 	font-family: "Roboto", sans-serif;
@@ -20,6 +38,9 @@ body {
         border-collapse: separate;
         thead, tbody{
             tr{
+                th{
+                    font-size: 16px;
+                }
                 th, td{
                     vertical-align: middle;
                     border:none;

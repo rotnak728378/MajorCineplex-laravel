@@ -16,25 +16,20 @@ class PagesController extends Controller
 {
     public function home() {
         $movies = DB::select('select * from table_movie where display=true and showing="Now Showing" order by release_date desc');
-        $movies_soon = DB::select('select * from table_movie where display=true and showing="Coming Soon" order by release_date desc');
+        $movies_soon = DB::select('select * from table_movie where display=true and showing="Coming Soon" order by release_date');
 
         return view('pages.home', ['movies'=>$movies, 'movies_soon'=>$movies_soon]);
     }
-    public function search(Request $req) {
-        return redirect('search-result/'.$req->search);
-    }
-    public function searchResult(Request $req) {
-        $key = $req->id;
-        $fetch = 'select * from table_movie where display=true and movie_title like "%'.$key.'%"';
-        $movies = DB::select($fetch);
-        return view('pages.search', ['movies'=>$movies, 'key'=>$key]);
+    public function search() {
+        $searchInput = $_GET['search'];
+        $data = MovieInfo::where('movie_title', 'like', '%'.$searchInput.'%')->get();
+        return view('pages.search', ['movies'=>$data, 'searchInput'=>$searchInput]);
     }
     public function autocomplete(Request $request)
     {
         $data = MovieInfo::select("movie_title")
                 ->where("movie_title","LIKE","%{$request->query}%")
                 ->get();
-   
         return response()->json($data);
     }
     public function movieBookingInfo(Request $request) {
@@ -165,7 +160,7 @@ class PagesController extends Controller
         $user->movie_id = $request->movieid;
         //convert array to string
         $user->seats = implode(",", $request->seats);
-
+        $user->ticket_checkin = 'progress';
         $status = $user->save();
 
         $info = ["user"=>$request->Name, "time"=>$request->time, "cinema"=>$request->cinemaName, "seat"=>implode(",", $request->seats), "title"=>$request->movieTitle, "poster"=>$request->moviePoster];

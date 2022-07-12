@@ -35,7 +35,7 @@
         
         <br><br>
         <div class="main-content">
-            <div class="card mb-3" style="width: 540px;">
+            <div class="card mb-3" style="width: 460px; border-top: 1px solid white;">
               {{-- @foreach($info as $d) --}}
                 <div class="row g-0">
                   <div class="poster-paid col-md-4">

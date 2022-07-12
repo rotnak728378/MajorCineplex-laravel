@@ -38,9 +38,8 @@
                 </a>
             </li>
         </ul>
-        <form method="POST" action="{{ route('search') }}" autocomplete="off" class="search-bar d-flex" enctype="multipart/form-data">
-            @csrf
-            <input name="search" class="search-input form-control me-2" type="search-movie" placeholder="Search movies" aria-label="Search">
+        <form type="get" action="{{ url('/search') }}" autocomplete="off" class="search-bar d-flex" enctype="multipart/form-data">
+            <input name="search" value="{{request()->path() == 'search' ? $searchInput : '' }}" id="search" class="search-input form-control me-2" type="search-movie" placeholder="Search movies" aria-label="Search">
             <button class="search-btn btn btn-outline-success" type="submit">
                 <span class="iconify" data-icon="bx:search-alt-2"></span>
             </button>
@@ -59,14 +58,14 @@
         </div>
     </div>
 </div>
-
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
     var path = "{{ route('autocomplete') }}";
-    $('input.search-input').typeahead({
+    $('#search').typeahead({
         source:  function (query, process) {
         return $.get(path, { query: query }, function (data) {
                 return process(data);
             });
         }
     });
-</script>
+</script> --}}

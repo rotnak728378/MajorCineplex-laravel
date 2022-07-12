@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
     <link rel="icon" href="{{asset('images/majorcineplex-icon.png')}}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('./css/admin_style.css')}}">
@@ -35,6 +35,13 @@
         border: none;
         background: unset;
         border-bottom: 2px solid #FF3D00;
+      }
+      .booked .nav-item .nav-link.active:hover {
+          color: #FF3D00;
+          font-weight: 600;
+          border: none;
+          background: unset;
+          border-bottom: 2px solid #FF3D00;
       }
       .booked .nav-item .nav-link:hover {
         border: none;
@@ -63,7 +70,16 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-50 p-1 ps-3" type="text" placeholder="Search" aria-label="Search">
+  <form autocomplete="off" action="{{url('/search-in-admin')}}" type="get" class="search-form">
+    <div class="wrap">
+      <div class="search">
+         <input type="text" name="query" class="searchTerm" placeholder="Search...">
+         <button type="submit" class="searchButton">
+           <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3 me-4" href="/logout">Sign out</a>
@@ -78,7 +94,7 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/dashboard">
-              <span data-feather="home"></span>
+              <span class="iconify" data-icon="lucide:layout-dashboard" data-width="20" data-height="20"></span>
               Dashboard
             </a>
           </li>
@@ -123,7 +139,7 @@
       <ul class="booked nav nav-tabs mt-4" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-            <span data-feather="credit-card"></span> 
+            <span class="iconify" data-icon="healthicons:money-bag" data-width="20" data-height="20"></span>
             Purchased Users
           </button>
         </li>
@@ -139,6 +155,10 @@
           <div class="booked-library">
             <section class="main-content">
               <div class="container">
+                <br>
+                <span class="iconify ms-2" data-icon="akar-icons:circle-fill" style="color: #1cdb42;" data-width="18" data-height="18"></span> Checked-in 
+                <span class="iconify ms-2" data-icon="akar-icons:circle-fill" style="color: red" data-width="18" data-height="18"></span> Missed
+                <span class="iconify ms-2" data-icon="akar-icons:circle-fill" style="color: yellow" data-width="18" data-height="18"></span> Not yet checked-in
                 @if(count($data))
                   <table class="table">
                     <thead>
@@ -155,7 +175,7 @@
                     <tbody>
                       @foreach($data as $d)
                         <tr>
-                          <td>
+                          <td style="border-left: 5px solid {{$d->ticket_checkin=='checked' ? '#1CDB42':($d->ticket_checkin=='missed' ? 'red':'yellow')}};">
                             <div class="user-info">
                               <div class="user-info__img">
                                 <img src="{{asset($d->poster)}}" alt="User Img">
@@ -192,12 +212,16 @@
           <div class="booked-library">
             <section class="main-content">
               <div class="container">
+                <br>
+                <span class="iconify ms-2" data-icon="akar-icons:circle-fill" style="color: #1cdb42;" data-width="18" data-height="18"></span> Checked-in 
+                <span class="iconify ms-2" data-icon="akar-icons:circle-fill" style="color: red" data-width="18" data-height="18"></span> Missed
+                <span class="iconify ms-2" data-icon="akar-icons:circle-fill" style="color: yellow" data-width="18" data-height="18"></span> Not yet checked-in
                 @if(count($data_reserved))
                   <table class="table">
                     <thead>
                       <tr>
                         <th>Movie</th>
-                        <th>Purchased by</th>
+                        <th>Reserved by</th>
                         <th>Cinema</th>
                         <th>Seats</th>
                         <th>Booking Date</th>
@@ -208,7 +232,7 @@
                     <tbody>
                       @foreach($data_reserved as $d)
                         <tr>
-                          <td>
+                          <td style="border-left: 5px solid {{$d->ticket_checkin=='checked' ? '#1CDB42':($d->ticket_checkin=='missed' ? 'red':'yellow')}};">
                             <div class="user-info">
                               <div class="user-info__img">
                                 <img src="{{asset($d->poster)}}" alt="User Img">
@@ -248,7 +272,7 @@
 
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="./js/dashboard.js"></script>

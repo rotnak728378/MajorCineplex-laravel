@@ -9,11 +9,13 @@
     <title>Edit Movie</title>
 
     <link rel="canonical" href="{{asset('https://getbootstrap.com/docs/5.0/examples/dashboard/')}}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
-    
-<link href="{{asset('./assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="{{asset('./css/style.css')}}">
+      
+    <link href="{{asset('./assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('./css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('./css/dashboard')}}">
+    <link rel="icon" href="{{asset('images/majorcineplex-icon.png')}}">
 
     <style>
       .bd-placeholder-img {
@@ -44,7 +46,16 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-50 p-1 ps-3" type="text" placeholder="Search" aria-label="Search">
+  <form autocomplete="off" action="{{url('/search-in-admin')}}" type="get" class="search-form">
+    <div class="wrap">
+      <div class="search">
+         <input type="text" name="query" class="searchTerm" placeholder="Search...">
+         <button type="submit" class="searchButton">
+           <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3 me-4" href="/logout">Sign out</a>
@@ -59,7 +70,7 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/dashboard">
-              <span data-feather="home"></span>
+              <span class="iconify" data-icon="lucide:layout-dashboard" data-width="20" data-height="20"></span>
               Dashboard
             </a>
           </li>
@@ -103,7 +114,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">New Movie</h1>
+        <h1 class="h2">Edit Movie</h1>
       </div>
 
       @if(session('success'))
@@ -239,6 +250,7 @@
       }
     }
 </script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script src="{{asset('../assets/dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js')}}" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="{{asset('https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js')}}" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>

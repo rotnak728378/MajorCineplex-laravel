@@ -3,7 +3,7 @@
 @section('content-items')    
     <div class="movie-each-cinema">
         <div class="title-search" style="color: white">
-            <h3>Search | <span style="font-size: 20px; font-weight: 400">Result for: {{$key}}</span></h3>
+            <h3>Search</h3>
             <hr>
         </div>
         <div class="date-selecting">

@@ -137,6 +137,14 @@ body {
 
     .slider-page {
         margin-top: 60px;
+
+        .carousel-inner {
+            .carousel-item {
+                img {
+                    width: 100%;
+                }
+            }
+        }
     }
 
     .main-contents {
@@ -161,11 +169,11 @@ body {
                     border-radius: unset;
 
                     &.active {
-                        // background-color: $orange;
-                        // color: white;
-                        // border: 1px solid white;
                         border-bottom: 2px solid $orange;
                         color: white;
+                    }
+                    &:hover {
+                        color: rgba(255, 255, 255, 0.856);
                     }
                 }
             }

@@ -16,7 +16,7 @@
         
             <div>
                 <img class="moviePoster" src="{{asset($movie->poster)}}" alt="">
-                <h3 class="movieTitle">{{$movie->movie_title}}</h3>
+                <h3 style="color: orange; font-weight: 600;" class="movieTitle">{{$movie->movie_title}}</h3>
                 <button class="bookNowBtn" {{$movie->showing == 'Coming Soon' ? 'hidden':''}}>
                     <a href="/movie-booking-info/{{$movie->movie_id}}/book-ticket">Book Now</a>
                 </button>
@@ -44,9 +44,9 @@
                 <br>
 
                 <div class="more-info">
-                    <h5 class="textDecor">Overview</h5>
-                    <br>
-                    <p>{{$movie->description}}</p>
+                    <h5 style="font-weight: 700" class="textDecor">Overview</h5>
+                    {{-- <br> --}}
+                    <p style="font-weight: 300">{{$movie->description}}</p>
 
                 </div>
             </div>
@@ -57,18 +57,28 @@
 
     <!-- you may also like container -->
 
-    {{-- <div class="mayAlsoLike">
+    <div class="mayAlsoLike">
 
         <h4 class="textDecor">You may also like:</h4>
 
         <div class="recommend-movie">
-            <img class="otherPoster" src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="">
-            <img class="otherPoster" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/d1pklzbuyaab0la-1552597012.jpg" alt="">
-            <img class="otherPoster" src="https://www.digitalartsonline.co.uk/cmsdata/slideshow/3662115/baby-driver-rory-hi-res.jpg" alt="">
-            <img class="otherPoster" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRBkxgl2A2PhE_6tklFLT0bxn5NLhvhsnpXGhmXBt_zotrlVHmo" alt="">
-            <img class="otherPoster" src="https://m.media-amazon.com/images/I/71kvH7JJFlL._AC_SY679_.jpg" alt="">
+            <a href="/movie-booking-info/24">
+                <img class="otherPoster" src="{{asset('/storage/images/1657275736Fast & feel love.jpg')}}" alt="">
+            </a>
+            <a href="/movie-booking-info/37">
+                <img class="otherPoster" src="{{asset('/storage/images/1656868372file_20222809122800 (1).jpg')}}" alt="">
+            </a>
+            <a href="/movie-booking-info/43">
+                <img class="otherPoster" src="{{asset('/storage/images/1657124119file_20220810010811.jpg')}}" alt="">
+            </a>
+            <a href="/movie-booking-info/44">
+                <img class="otherPoster" src="{{asset('/storage/images/1657277761file_20224721034726.jpg')}}" alt="">
+            </a>
+            <a href="/movie-booking-info/23">
+                <img class="otherPoster" src="{{asset('/storage/images/1656405768Spiral.jpg')}}" alt="">
+            </a>
         </div>
-    </div> --}}
+    </div>
     @endforeach
 </div>
 

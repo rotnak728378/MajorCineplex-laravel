@@ -1,23 +1,17 @@
 <div class="footer-contents">
     <div class="menu-footer">
         <div class="menu-col">
-            <p>MOVIE</p>
+            <p>CONTENTS</p>
             <ul>
                 <li>
-                    <a href="#">Now Showing</a>
+                    <a href="/cinema">Cinemas</a>
                 </li>
                 <li>
-                    <a href="#">Coming Soon</a>
-                </li>
-                <li>
-                    <a href="#">Cinemas</a>
-                </li>
-                <li>
-                    <a href="#">News & Activities</a>
+                    <a href="/new-activity">News & Activities</a>
                 </li>
             </ul>
         </div>
-        <div class="menu-col">
+        {{-- <div class="menu-col">
             <p>SYSTEM TYPE</p>
             <ul>
                 <li>
@@ -30,7 +24,7 @@
                     <a href="#">Kids Cinema</a>
                 </li>
             </ul>
-        </div>
+        </div> --}}
     </div>
     <div class="contact">
         <h5>MOVIE LINE</h5>
@@ -55,12 +49,12 @@
 
 <div class="bottom-footer">
     <div class="app-download">
-        <div class="store">
-            <img src="{{asset('./images/play-store.webp')}}"="playstore">
-        </div>
-        <div class="store">
-            <img src="{{asset('./images/app-store.webp')}}"="app-store">
-        </div>
+        <a href="https://play.google.com/store/apps/details?id=th.co.invp.majorcineplexcambodia" class="store">
+            <img src="{{asset('./images/play-store.webp')}}" class="playstore">
+        </a>
+        <a href="https://apps.apple.com/kh/app/major-kh/id912320333" class="store">
+            <img src="{{asset('./images/app-store.webp')}}" clas="app-store">
+        </a>
     </div>
     <div class="copyright">
         <p>Copyright reserved © 2020 MAJOR CINEPLEX GROUP PLC. All rights reserved.</p>

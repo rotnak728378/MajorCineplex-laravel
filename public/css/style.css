@@ -186,6 +186,9 @@ body {
 .homepage .slider-page {
   margin-top: 60px;
 }
+.homepage .slider-page .carousel-inner .carousel-item img {
+  width: 100%;
+}
 .homepage .main-contents {
   color: white;
   padding: 30px 70px;
@@ -205,6 +208,9 @@ body {
 .homepage .main-contents .filter-bar .nav .nav-link.active {
   border-bottom: 2px solid #FF3D00;
   color: white;
+}
+.homepage .main-contents .filter-bar .nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.856);
 }
 .homepage .main-contents .movie-contents {
   margin-top: 30px;

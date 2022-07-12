@@ -53,7 +53,16 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-50 p-1 ps-3" type="text" placeholder="Search" aria-label="Search">
+  <form autocomplete="off" action="{{url('search-in-admin')}}" type="get" class="search-form">
+    <div class="wrap">
+      <div class="search">
+         <input type="text" name="query" class="searchTerm" placeholder="Search...">
+         <button type="submit" class="searchButton">
+           <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3 me-4" href="/logout">Sign out</a>
@@ -68,7 +77,7 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/dashboard">
-              <span data-feather="home"></span>
+              <span class="iconify" data-icon="lucide:layout-dashboard" data-width="20" data-height="20"></span>
               Dashboard
             </a>
           </li>
@@ -116,8 +125,52 @@
             <section class="main-content">
               <div class="container">
                 <br>
-                <h1>Dashboard</h1>
+                <h3>Dashboard</h3>
                 <hr>
+                <br>
+                <div class="box-card">
+                  <div class="row">
+                    <div class="col col-4">
+                      <div class="box-item">
+                        <h6>Movies</h6>
+                        <h3>{{count($movies)}}</h3>
+                      </div>
+                    </div>
+
+                    <div class="col col-4">
+                      <div class="box-item">
+                        <h6>Staffs</h6>
+                        <h3>{{count($staffs)+49}}</h3>
+                      </div>
+                    </div>
+
+                    <div class="col col-4">
+                      <div class="box-item">
+                        <h6>Branches</h6>
+                        <h3>{{count($cinemas)}}</h3>
+                      </div>
+                    </div>
+                    <div class="col col-4">
+                      <div class="box-item">
+                        <h6>Income</h6>
+                        <h3>${{$seats_amount*4.5}}</h3>
+                      </div>
+                    </div>
+                    <div class="col col-4">
+                      <div class="box-item">
+                        <h6>Customers</h6>
+                        <h3>{{count($customers)}}</h3>
+                      </div>
+                    </div>
+                    <div class="col col-4">
+                      <div class="box-item">
+                        <h6>Feedback</h6>
+                        <h3>{{count($msg)}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br><br><br>
                 @if(session('success'))
                   <div class="alert alert-success">
                       {{ session('success') }}
@@ -132,7 +185,7 @@
                         <th>Expired Date</th>
                         <th>Duration</th>
                         <th>Showing</th>
-                        <th>Actions</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -144,7 +197,7 @@
                                 <img src="{{asset($m->poster)}}" alt="User Img">
                               </div>
                               <div class="user-info__basic">
-                                <h5 class="mb-0">{{$m->movie_title}}</h5>
+                                <h6 class="mb-0">{{$m->movie_title}}</h6>
                                 <p class="text-muted mb-0">{{$m->genre}}</p>
                               </div>
                             </div>
@@ -154,8 +207,8 @@
                           <td>
                             {{$m->duration}} mins
                           </td>
-                          <td style="{{$m->showing=='Now Showing' ? 'color: #00ff00;':'color: blue;'}}">
-                            {{$m->showing}}
+                          <td style="{{$m->showing=='Now Showing' ? 'color: #1CDB42;':'color: blue;'}}">
+                            <b>{{$m->showing}}</b>
                           </td>
                           <td>
                             <div class="dropdown open">
@@ -165,7 +218,7 @@
                               </a>
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId1">
                                 <a class="dropdown-item" href="/edit/{{$m->movie_id}}"><i class="fa fa-pencil mr-1"></i> Edit</a>
-                                <a class="dropdown-item text-danger" onclick="return confirm('Are you sure?')" href="/remove/{{$m->movie_id}}"><i class="fa fa-trash mr-1"></i> Delete</a>
+                                <a class="dropdown-item text-danger" onclick="return confirm('Are you really want to remove?')" href="/remove/{{$m->movie_id}}"><i class="fa fa-trash mr-1"></i> Remove</a>
                               </div>
                             </div>
                           </td>
@@ -174,7 +227,7 @@
                     </tbody>
                   </table>
                 @else
-                  <h3 style="color: gray; text-align: center; margin-top: 150px;">No users found!</h3>
+                  <h3 style="color: gray; text-align: center; margin-top: 150px;">No data found!</h3>
                 @endif
               </div>
             </section>
@@ -190,7 +243,7 @@
 
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="./js/dashboard.js"></script>

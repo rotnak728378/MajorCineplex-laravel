@@ -11,7 +11,47 @@ body {
 .navbar {
   background: #242333;
 }
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
 
+.searchTerm {
+  width: 100%;
+  border: 2px solid #FF3D00;
+  border-right: none;
+  padding: 5px 15px;
+  /* height: 20px; */
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #FF3D00;
+  background: #FF3D00;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /*
  * Sidebar
  */
@@ -51,6 +91,9 @@ body {
 .sidebar .nav-link {
   font-weight: 500;
   color: white;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 5px;
   
 }
 
@@ -61,6 +104,7 @@ body {
 
 .sidebar .nav-link.active {
   color: #FF3D00;
+  background-color: white;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -95,7 +139,31 @@ body {
   border-width: 0;
   border-radius: 0;
 }
-
+.box-item {
+  border-radius: 7px;
+  text-align: center;
+  color: white;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+.col:nth-child(1) .box-item{
+  background-color: rgb(255, 208, 0);
+}
+.col:nth-child(2) .box-item{
+  background-color: rgb(0, 81, 255);
+}
+.col:nth-child(3) .box-item {
+  background-color: rgb(255, 0, 55);
+}
+.col:nth-child(4) .box-item{
+  background-color: rgb(219, 0, 190);
+}
+.col:nth-child(5) .box-item{
+  background-color: rgb(18, 214, 0);
+}
+.col:nth-child(6) .box-item{
+  background-color: brown;
+}
 .form-control-dark {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.815);
