@@ -15,8 +15,16 @@ use Carbon\Carbon;
 class PagesController extends Controller
 {
     public function home() {
-        $movies = DB::select('select * from table_movie where display=true and showing="Now Showing" order by release_date desc');
-        $movies_soon = DB::select('select * from table_movie where display=true and showing="Coming Soon" order by release_date');
+        $movies = DB::table('table_movie')
+        ->where('display', true)
+        ->where('showing', 'Now Showing')
+        ->orderBy('release_date', 'desc')
+        ->get();
+        $movies_soon = DB::table('table_movie')
+        ->where('display', true)
+        ->where('showing', 'Coming Soon')
+        ->orderBy('release_date', 'desc')
+        ->get();
 
         return view('pages.home', ['movies'=>$movies, 'movies_soon'=>$movies_soon]);
     }
@@ -75,13 +83,13 @@ class PagesController extends Controller
         $temp_str = "";
         $test ="";
         foreach($seats as $seat) {
-            $temp_str = $seat->seats; 
-            $test = $test ? $test.",".$temp_str : $temp_str;   
-            
+            $temp_str = $seat->seats;
+            $test = $test ? $test.",".$temp_str : $temp_str;
+
         }
-        $arr_seats = explode(',', $test); 
+        $arr_seats = explode(',', $test);
         $occupied = [];
-        
+
         foreach(range(1, 10) as $y) {
             foreach(range(1, 16) as $x) {
                 foreach($arr_seats as $z) {
@@ -171,7 +179,7 @@ class PagesController extends Controller
                 case 'payment':
                     // payment
                     return view('pages.paid-thank', ['info'=>$info]);
-        
+
                 case 'reserve':
                     // reserve
                     return view('pages.reserve-thank', ['info'=>$info]);
